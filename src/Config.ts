@@ -1,4 +1,7 @@
 const Config = {
+  api: {
+    base_URL: import.meta.env.VITE_MARICA_API_BASE_URL,
+  },
   app: {
     name: import.meta.env.VITE_APP_NAME,
     version: import.meta.env.PACKAGE_VERSION,
