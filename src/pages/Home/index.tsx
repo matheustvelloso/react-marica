@@ -15,7 +15,9 @@ import { RiCoupon2Fill } from 'react-icons/ri'
 import { TbFlower } from 'react-icons/tb'
 import { TiHome } from 'react-icons/ti'
 
+import BannerHeader from 'components/BannerHeader'
 import BannerMain from 'components/BannerMain'
+import Footer from 'components/Footer'
 import Header from 'components/Header'
 import NavigationCard from 'components/NavigationCard'
 
@@ -33,9 +35,10 @@ const Home: React.FC = () => {
   return (
     <>
       <Header />
+      <BannerHeader />
       <main>
         <Container className="py-5">
-          <Row className="d-flex justify-content-center row-cols-3">
+          <Row className="d-flex justify-content-center row-cols-2 row-cols-md-3">
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaUmbrellaBeach}
@@ -128,6 +131,7 @@ const Home: React.FC = () => {
         </Container>
         <BannerMain />
       </main>
+      <Footer />
     </>
   )
 }

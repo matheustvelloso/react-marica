@@ -23,6 +23,8 @@ import { TiHome } from 'react-icons/ti'
 import Logo from 'assets/Logo.png'
 import LogoMobile from 'assets/LogoMobile.png'
 
+import Config from 'Config'
+
 import MenuNavigation from './MenuNavigation'
 import {
   HeaderBackground,
@@ -107,7 +109,7 @@ const Header: React.FC = () => {
             <NavContainer className="d-none d-md-block">
               <a
                 className="mx-1"
-                href="https://www.facebook.com"
+                href={Config.app.facebook}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -115,7 +117,7 @@ const Header: React.FC = () => {
               </a>
               <a
                 className="mx-1"
-                href="https://www.instagram.com"
+                href={Config.app.instagram}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -123,7 +125,7 @@ const Header: React.FC = () => {
               </a>
               <a
                 className="mx-1"
-                href="https://www.twitter.com"
+                href={Config.app.twitter}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -131,7 +133,7 @@ const Header: React.FC = () => {
               </a>
               <a
                 className="mx-1"
-                href="https://www.youtube.com"
+                href={Config.app.youtube}
                 target="_blank"
                 rel="noreferrer"
               >
