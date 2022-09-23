@@ -18,7 +18,7 @@ import {
 const Footer: React.FC = () => {
   return (
     <FooterBackground>
-      <Container className="pt-3">
+      <Container className="py-3">
         <div className="d-flex flex-column flex-xl-row justify-content-center justify-content-xl-between flex-wrap">
           <div>
             <NavigationFooter>
