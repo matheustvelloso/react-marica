@@ -42,7 +42,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaUmbrellaBeach}
-                link="/"
+                link="/pontos-turisticos"
                 title="Pontos Turísticos"
                 description="Conheça nossas praias, lagoas, grutas e outros pontos turísticos"
               />
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaBed}
-                link="/"
+                link="/hoteis-e-pousadas"
                 title="Hotéis e Pousadas"
                 description="Saiba onde se hospedar em Maricá"
               />
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={GiKnifeFork}
-                link="/"
+                link="/bares-e-restaurantes"
                 title="Bares e Restaurantes"
                 description="Aprecie a gastronomia de Maricá"
               />
