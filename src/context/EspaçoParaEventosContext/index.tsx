@@ -10,40 +10,40 @@ import {
 import MaricaApi from 'services/MaricaClient'
 
 import { Category } from 'types/CategoryType'
-import { Point } from 'types/PointType'
+import { Place } from 'types/PlacesType'
 
 interface IContextProps {
-  points: Point[] | undefined
+  places: Place[] | undefined
   category: Category[] | undefined
-  fetchPoints: (query?: string, value?: string) => Promise<void>
+  fetchEvents: (query?: string, value?: string) => Promise<void>
 }
 
-interface IPontosTurísticosProps {
+interface IEspaçoParaEventosProps {
   children: React.ReactNode
 }
 
 export const ReactContext = createContext<IContextProps>({} as IContextProps)
 
-export const PontosTurísticosProvider: React.FC<IPontosTurísticosProps> = ({
+export const EspaçoParaEventosProvider: React.FC<IEspaçoParaEventosProps> = ({
   children,
 }) => {
-  const [points, setPoints] = useState<Point[]>()
+  const [places, setEvents] = useState<Place[]>()
   const [category, setCategory] = useState<Category[]>()
 
-  const fetchPoints = useCallback(async (query?: string, value?: string) => {
+  const fetchEvents = useCallback(async (query?: string, value?: string) => {
     const {
       data: { categorias, collection },
-    } = await MaricaApi.get(`/pontos${query || ''}`, {
+    } = await MaricaApi.get(`/espacos${query || ''}`, {
       params: {
         busca: value,
       },
     })
     setCategory(categorias)
-    setPoints(collection)
+    setEvents(collection)
   }, [])
 
   useEffect(() => {
-    fetchPoints()
+    fetchEvents()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -51,11 +51,11 @@ export const PontosTurísticosProvider: React.FC<IPontosTurísticosProps> = ({
     <ReactContext.Provider
       value={useMemo(
         () => ({
-          fetchPoints,
-          points,
+          places,
           category,
+          fetchEvents,
         }),
-        [category, points, fetchPoints],
+        [category, places, fetchEvents],
       )}
     >
       {children}
@@ -63,12 +63,14 @@ export const PontosTurísticosProvider: React.FC<IPontosTurísticosProps> = ({
   )
 }
 
-export const usePontosTurísticos = (): IContextProps => {
+export const useEspaçoParaEventos = (): IContextProps => {
   const context = useContext(ReactContext)
 
   if (!context) {
     // eslint-disable-next-line no-console
-    console.error('usePontosTurísticos must be within PontosTurísticosProvider')
+    console.error(
+      'useEspaçoParaEventos must be within EspaçoParaEventosProvider',
+    )
   }
 
   return context

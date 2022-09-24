@@ -13,10 +13,22 @@ const BannerHeader: React.FC = () => {
       className="carousel slide carousel-fade"
       data-bs-ride="carousel"
     >
-      <div className="carousel-inner">
+      <div className="carousel-inner d-none d-md-block">
+        {banners?.map((banner, i) => (
+          <div className={`carousel-item  ${i === position ? 'active' : ''}`}>
+            <img className="img-fluid" src={banner.image_l} alt={banner.url} />
+          </div>
+        ))}
+      </div>
+      <div className="carousel-inner d-block d-md-none">
         {banners?.map((banner, i) => (
           <div className={`carousel-item ${i === position ? 'active' : ''}`}>
-            <img src={banner.image_l} alt={banner.url} />
+            <img
+              className="img-fluid"
+              style={{ width: '767px' }}
+              src={banner.image_s}
+              alt={banner.url}
+            />
           </div>
         ))}
       </div>

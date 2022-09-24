@@ -15,6 +15,7 @@ import { MotelAndInn } from 'types/MotelAndInnType'
 interface IContextProps {
   motelAndInn: MotelAndInn[] | undefined
   category: Category[] | undefined
+  fetchMotelAndInn: (query?: string, value?: string) => Promise<void>
 }
 
 interface IHotéisEPousadasProps {
@@ -29,13 +30,20 @@ export const HotéisEPousadasProvider: React.FC<IHotéisEPousadasProps> = ({
   const [motelAndInn, setMotelAndInn] = useState<MotelAndInn[]>()
   const [category, setCategory] = useState<Category[]>()
 
-  const fetchMotelAndInn = useCallback(async () => {
-    const {
-      data: { categorias, collection },
-    } = await MaricaApi.get('/hoteis-e-pousadas')
-    setMotelAndInn(collection)
-    setCategory(categorias)
-  }, [])
+  const fetchMotelAndInn = useCallback(
+    async (query?: string, value?: string) => {
+      const {
+        data: { categorias, collection },
+      } = await MaricaApi.get(`/hoteis-e-pousadas${query || ''}`, {
+        params: {
+          busca: value,
+        },
+      })
+      setMotelAndInn(collection)
+      setCategory(categorias)
+    },
+    [],
+  )
 
   useEffect(() => {
     fetchMotelAndInn()
@@ -48,8 +56,9 @@ export const HotéisEPousadasProvider: React.FC<IHotéisEPousadasProps> = ({
         () => ({
           motelAndInn,
           category,
+          fetchMotelAndInn,
         }),
-        [category, motelAndInn],
+        [category, motelAndInn, fetchMotelAndInn],
       )}
     >
       {children}

@@ -15,6 +15,7 @@ import { Category } from 'types/CategoryType'
 interface IContextProps {
   barAndRestaurant: BarAndRestaurant[] | undefined
   category: Category[] | undefined
+  fetchBarAndRestaurant: (query?: string, value?: string) => Promise<void>
 }
 
 interface IBaresERestaurantesProps {
@@ -29,16 +30,23 @@ export const BaresERestaurantesProvider: React.FC<IBaresERestaurantesProps> = ({
   const [barAndRestaurant, setbarAndRestaurant] = useState<BarAndRestaurant[]>()
   const [category, setCategory] = useState<Category[]>()
 
-  const fetchPoints = useCallback(async () => {
-    const {
-      data: { categorias, collection },
-    } = await MaricaApi.get('/restaurantes')
-    setCategory(categorias)
-    setbarAndRestaurant(collection)
-  }, [])
+  const fetchBarAndRestaurant = useCallback(
+    async (query?: string, value?: string) => {
+      const {
+        data: { categorias, collection },
+      } = await MaricaApi.get(`/restaurantes${query || ''}`, {
+        params: {
+          busca: value,
+        },
+      })
+      setCategory(categorias)
+      setbarAndRestaurant(collection)
+    },
+    [],
+  )
 
   useEffect(() => {
-    fetchPoints()
+    fetchBarAndRestaurant()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -48,8 +56,9 @@ export const BaresERestaurantesProvider: React.FC<IBaresERestaurantesProps> = ({
         () => ({
           barAndRestaurant,
           category,
+          fetchBarAndRestaurant,
         }),
-        [category, barAndRestaurant],
+        [category, barAndRestaurant, fetchBarAndRestaurant],
       )}
     >
       {children}

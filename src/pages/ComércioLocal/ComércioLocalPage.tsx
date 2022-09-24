@@ -3,7 +3,7 @@ import { FormEvent, memo, useCallback, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FiSearch } from 'react-icons/fi'
 
-import { useBaresERestaurantes } from 'context/BaresERestaurantes'
+import { useComércioLocal } from 'context/ComércioLocalContext'
 
 import Categories from 'components/Categories'
 import Footer from 'components/Footer'
@@ -11,36 +11,35 @@ import Header from 'components/Header'
 import PagesCard from 'components/PagesCard'
 import SearchAndHomeBtn from 'components/SearchAndHomeBtn'
 
-const BaresERestaurantes: React.FC = () => {
-  const { barAndRestaurant, category, fetchBarAndRestaurant } =
-    useBaresERestaurantes()
+const ComércioLocal: React.FC = () => {
+  const { markets, category, fetchMarkets } = useComércioLocal()
   const [value, setValue] = useState('')
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      fetchBarAndRestaurant('/busca', value)
+      fetchMarkets('/busca', value)
     },
-    [fetchBarAndRestaurant, value],
+    [fetchMarkets, value],
   )
 
   const handleButton = useCallback(
     (id: number) => {
-      fetchBarAndRestaurant(`/categorias/${String(id)}`)
+      fetchMarkets(`/categorias/${String(id)}`)
     },
-    [fetchBarAndRestaurant],
+    [fetchMarkets],
   )
 
   return (
     <>
       <Header />
-      <SearchAndHomeBtn title="Bares e Restaurantes">
+      <SearchAndHomeBtn title="Comércio local">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="Buscar Bares e Restaurantes"
+            placeholder="Buscar Comércio local"
           />
           <button type="submit">
             <FiSearch />
@@ -51,12 +50,9 @@ const BaresERestaurantes: React.FC = () => {
         <Container>
           <Categories categories={category} handleBtn={handleButton} />
           <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
-            {barAndRestaurant?.map((_barAndRestaurant) => (
-              <Col key={_barAndRestaurant.id} className="d-flex mb-3 mb-md-5">
-                <PagesCard
-                  apiContent={_barAndRestaurant}
-                  handleBtn={handleButton}
-                />
+            {markets?.map((market) => (
+              <Col key={market.id} className="d-flex mb-3 mb-md-5">
+                <PagesCard apiContent={market} handleBtn={handleButton} />
               </Col>
             ))}
           </Row>
@@ -67,4 +63,4 @@ const BaresERestaurantes: React.FC = () => {
   )
 }
 
-export default memo(BaresERestaurantes)
+export default memo(ComércioLocal)

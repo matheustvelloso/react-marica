@@ -7,6 +7,7 @@ import {
   CardContainer,
   CardContent,
   DescriptionSpan,
+  ExternalLink,
   IconLink,
   TitleLink,
 } from './styles'
@@ -16,6 +17,7 @@ interface INavigationCardProps {
   link: string
   title: string
   description: string
+  linkReact: string
 }
 
 const NavigationCard: React.FC<INavigationCardProps> = ({
@@ -23,6 +25,7 @@ const NavigationCard: React.FC<INavigationCardProps> = ({
   link,
   title,
   description,
+  linkReact,
 }) => {
   const Icon = icon
   return (
@@ -32,7 +35,13 @@ const NavigationCard: React.FC<INavigationCardProps> = ({
           <Icon />
         </IconLink>
         <h2>
-          <TitleLink to={link}>{title}</TitleLink>
+          {linkReact === 'Link' ? (
+            <TitleLink to={link}>{title}</TitleLink>
+          ) : (
+            <ExternalLink href={link} target="_blank" rel="noreferrer">
+              {title}
+            </ExternalLink>
+          )}
         </h2>
         <DescriptionSpan>{description}</DescriptionSpan>
         <ButtonAccess to={link}>Acessar</ButtonAccess>

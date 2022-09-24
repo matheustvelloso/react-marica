@@ -44,11 +44,17 @@ export const InputContainer = styled.div`
   border-radius: 20px;
   width: 410px;
   margin-left: 10px;
+  white-space: nowrap;
+
+  form {
+    display: flex;
+    width: 100%;
+  }
 
   input {
     border: none;
     margin-left: 10px;
-    width: 360px;
+    width: 100%;
 
     &:focus {
       outline: none;
@@ -57,5 +63,6 @@ export const InputContainer = styled.div`
   button {
     border: none;
     background-color: #00000000;
+    margin-right: 10px;
   }
 `

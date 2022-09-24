@@ -52,7 +52,7 @@ export const LinkTitle = styled(Link)`
   }
 `
 
-export const ButtonCategorie = styled(Link)`
+export const ButtonCategory = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

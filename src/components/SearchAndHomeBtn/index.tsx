@@ -2,18 +2,18 @@ import { memo } from 'react'
 
 import { Container } from 'react-bootstrap'
 import { FaMapMarkedAlt } from 'react-icons/fa'
-import { FiSearch } from 'react-icons/fi'
 import { IoMdArrowBack } from 'react-icons/io'
 
 import { InputContainer, LinkBackToHome, MapButton, PageTitle } from './styles'
 
 interface ISearchAndHomeBtn {
   title: string
+  children?: React.ReactNode
 }
 
-const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({ title }) => {
+const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({ title, children }) => {
   return (
-    <Container className="d-flex justify-content-between align-items-center pt-3 pt-md-4 pb-4">
+    <Container className="d-md-flex justify-content-between align-items-center pt-3 pt-md-4 pb-4">
       <div className="d-flex">
         <LinkBackToHome to="/">
           <IoMdArrowBack className="me-2" />
@@ -25,12 +25,7 @@ const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({ title }) => {
           <FaMapMarkedAlt />
           <span>Mapa</span>
         </MapButton>
-        <InputContainer>
-          <input type="text" placeholder="Buscar pontos turísticos" />
-          <button type="button">
-            <FiSearch />
-          </button>
-        </InputContainer>
+        <InputContainer>{children}</InputContainer>
       </div>
     </Container>
   )

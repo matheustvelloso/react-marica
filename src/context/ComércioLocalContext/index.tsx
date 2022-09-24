@@ -10,40 +10,40 @@ import {
 import MaricaApi from 'services/MaricaClient'
 
 import { Category } from 'types/CategoryType'
-import { Point } from 'types/PointType'
+import { Market } from 'types/MarketType'
 
 interface IContextProps {
-  points: Point[] | undefined
+  markets: Market[] | undefined
   category: Category[] | undefined
-  fetchPoints: (query?: string, value?: string) => Promise<void>
+  fetchMarkets: (query?: string, value?: string) => Promise<void>
 }
 
-interface IPontosTurísticosProps {
+interface IComércioLocalProps {
   children: React.ReactNode
 }
 
 export const ReactContext = createContext<IContextProps>({} as IContextProps)
 
-export const PontosTurísticosProvider: React.FC<IPontosTurísticosProps> = ({
+export const ComércioLocalProvider: React.FC<IComércioLocalProps> = ({
   children,
 }) => {
-  const [points, setPoints] = useState<Point[]>()
+  const [markets, setMarkets] = useState<Market[]>()
   const [category, setCategory] = useState<Category[]>()
 
-  const fetchPoints = useCallback(async (query?: string, value?: string) => {
+  const fetchMarkets = useCallback(async (query?: string, value?: string) => {
     const {
       data: { categorias, collection },
-    } = await MaricaApi.get(`/pontos${query || ''}`, {
+    } = await MaricaApi.get(`/comercios${query || ''}`, {
       params: {
         busca: value,
       },
     })
     setCategory(categorias)
-    setPoints(collection)
+    setMarkets(collection)
   }, [])
 
   useEffect(() => {
-    fetchPoints()
+    fetchMarkets()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -51,11 +51,11 @@ export const PontosTurísticosProvider: React.FC<IPontosTurísticosProps> = ({
     <ReactContext.Provider
       value={useMemo(
         () => ({
-          fetchPoints,
-          points,
+          fetchMarkets,
+          markets,
           category,
         }),
-        [category, points, fetchPoints],
+        [category, markets, fetchMarkets],
       )}
     >
       {children}
@@ -63,12 +63,12 @@ export const PontosTurísticosProvider: React.FC<IPontosTurísticosProps> = ({
   )
 }
 
-export const usePontosTurísticos = (): IContextProps => {
+export const useComércioLocal = (): IContextProps => {
   const context = useContext(ReactContext)
 
   if (!context) {
     // eslint-disable-next-line no-console
-    console.error('usePontosTurísticos must be within PontosTurísticosProvider')
+    console.error('useComércioLocal must be within ComércioLocalProvider')
   }
 
   return context

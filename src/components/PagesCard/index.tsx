@@ -1,9 +1,9 @@
 import { memo } from 'react'
 
-import { Point } from 'types/PointType'
+import { Page } from 'types/PageType'
 
 import {
-  ButtonCategorie,
+  ButtonCategory,
   CardContainer,
   ImageBackground,
   ImageLink,
@@ -12,27 +12,33 @@ import {
 } from './styles'
 
 interface IPagesCardProps {
-  point: Point
+  apiContent: Page
+  handleBtn: (id: number) => void
 }
 
-const PagesCard: React.FC<IPagesCardProps> = ({ point }) => {
+const PagesCard: React.FC<IPagesCardProps> = ({ apiContent, handleBtn }) => {
   return (
     <CardContainer>
       <ImageLink to="/">
-        <ImageBackground background={point.capa} />
+        <ImageBackground background={apiContent.capa} />
       </ImageLink>
       <div className="p-3">
         <div>
           <PointTitle>
-            <LinkTitle to="/">{point.nome}</LinkTitle>
+            <LinkTitle to="/">{apiContent.nome}</LinkTitle>
           </PointTitle>
           <div className="d-flex gap-2 flex-wrap">
-            {point.categorias.map((categorie) => (
-              <ButtonCategorie to="/">{categorie.label}</ButtonCategorie>
+            {apiContent.categorias.map((category) => (
+              <ButtonCategory
+                type="button"
+                onClick={() => handleBtn(category.id)}
+              >
+                {category.label}
+              </ButtonCategory>
             ))}
           </div>
         </div>
-        {point?.enderecos.map((address) => (
+        {apiContent?.enderecos.map((address) => (
           <p className="mt-3 mb-5 text-muted fs-sm">{address.label}</p>
         ))}
       </div>

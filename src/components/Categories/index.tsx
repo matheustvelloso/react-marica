@@ -2,19 +2,25 @@ import { memo } from 'react'
 
 import { Category } from 'types/CategoryType'
 
-import { CategoryLink, CategoriesList } from './styles'
+import { ButtonCategory, CategoriesList } from './styles'
 
 interface ICategoriesProps {
   categories: Category[] | undefined
+  handleBtn: (id: number) => void
 }
 
-const Categories: React.FC<ICategoriesProps> = ({ categories }) => {
+const Categories: React.FC<ICategoriesProps> = ({ categories, handleBtn }) => {
   return (
     <div className="mb-4">
       <CategoriesList>
         {categories &&
           categories.map((category) => (
-            <CategoryLink to="/">{category.label}</CategoryLink>
+            <ButtonCategory
+              type="button"
+              onClick={() => handleBtn(category.id)}
+            >
+              {category.label}
+            </ButtonCategory>
           ))}
       </CategoriesList>
     </div>

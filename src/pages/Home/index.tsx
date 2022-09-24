@@ -42,6 +42,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaUmbrellaBeach}
+                linkReact="Link"
                 link="/pontos-turisticos"
                 title="Pontos Turísticos"
                 description="Conheça nossas praias, lagoas, grutas e outros pontos turísticos"
@@ -50,6 +51,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaBed}
+                linkReact="Link"
                 link="/hoteis-e-pousadas"
                 title="Hotéis e Pousadas"
                 description="Saiba onde se hospedar em Maricá"
@@ -58,6 +60,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={GiKnifeFork}
+                linkReact="Link"
                 link="/bares-e-restaurantes"
                 title="Bares e Restaurantes"
                 description="Aprecie a gastronomia de Maricá"
@@ -66,6 +69,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaMotorcycle}
+                linkReact="Link"
                 link="/"
                 title="Delivery"
                 description="Receba o melhor de Maricá no conforto da sua casa"
@@ -74,7 +78,8 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={AiOutlineShop}
-                link="/"
+                linkReact="Link"
+                link="/comercio-local"
                 title="Comércio Local"
                 description="Veja onde fazer as suas compras"
               />
@@ -82,6 +87,7 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={RiCoupon2Fill}
+                linkReact="Link"
                 link="/"
                 title="Cupons de Desconto"
                 description="As melhores promoções para curtir a cidade"
@@ -90,7 +96,8 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={GiMicrophone}
-                link="/"
+                linkReact="Link"
+                link="/espaco-para-eventos"
                 title="Espaços para Eventos"
                 description="Locais para fazer suas festas ou reuniões"
               />
@@ -98,7 +105,8 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaRegCalendarAlt}
-                link="/"
+                linkReact="Link"
+                link="/eventos"
                 title="Eventos"
                 description="Confira o calendário de eventos da cidade"
               />
@@ -106,7 +114,8 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={FaMapMarkedAlt}
-                link="/"
+                linkReact=""
+                link="https://contato.site/5d9bab8/marica-cvb3/paginaprincipal"
                 title="Roteiros turísticos"
                 description="Conheça diversas trilhas ecológicas e de aventura, com variados níveis de dificuldade"
               />
@@ -114,7 +123,8 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={TbFlower}
-                link="/"
+                linkReact=""
+                link="https://www.feirartemarica.com.br/"
                 title="Artesanato"
                 description="Conheça e compre as criações dos artesãos de Maricá/RJ"
               />
@@ -122,7 +132,8 @@ const Home: React.FC = () => {
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
                 icon={TiHome}
-                link="/"
+                linkReact="Link"
+                link="/sobre-a-cidade"
                 title="Sobre a cidade"
                 description="Conheça mais sobre Maricá"
               />

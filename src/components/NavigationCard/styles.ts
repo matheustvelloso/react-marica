@@ -18,6 +18,7 @@ export const ButtonAccess = styled(Link)`
 export const CardContainer = styled.div`
   width: 100%;
   background-color: #fff;
+  box-shadow: #0000001a 0px 1px 5px;
   padding: 1rem 0.5rem;
   text-align: center;
   border-radius: 0.5rem;
@@ -40,6 +41,16 @@ export const IconLink = styled(Link)`
 `
 
 export const TitleLink = styled(Link)`
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+
+  &:hover {
+    color: #333;
+    text-decoration: underline;
+  }
+`
+export const ExternalLink = styled.a`
   font-size: 16px;
   color: #333;
   text-decoration: none;

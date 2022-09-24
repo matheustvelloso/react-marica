@@ -10,8 +10,8 @@ MaricaApi.interceptors.request.use((config) => {
   return {
     ...config,
     params: {
-      ...config.params,
       token: Config.api.token,
+      ...config.params,
     },
   }
 })

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const CategoriesList = styled.div`
@@ -12,7 +11,7 @@ export const CategoriesList = styled.div`
   flex-wrap: nowrap;
 `
 
-export const CategoryLink = styled(Link)`
+export const ButtonCategory = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +25,7 @@ export const CategoryLink = styled(Link)`
   padding: 0px 20px;
   white-space: nowrap;
   margin: 0 10px 10px 10px;
+  border: none;
 
   &:hover {
     background-color: #7dd700;
