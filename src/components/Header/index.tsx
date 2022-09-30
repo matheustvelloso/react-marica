@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 
 import { Container } from 'react-bootstrap'
 import { AiOutlineShop } from 'react-icons/ai'
@@ -25,27 +25,26 @@ import LogoMobile from 'assets/LogoMobile.png'
 
 import Config from 'Config'
 
+import useOnClickOutside from 'hooks/useOnClickOutside'
+
 import MenuNavigation from './MenuNavigation'
 import {
   HeaderBackground,
   HeaderContainer,
   MenuButton,
   Menu,
-  MenuOverlay,
   NavContainer,
   ButtonClose,
 } from './styles'
 
 const Header: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null)
+
   const [isMenuOpened, setIsMenuOpened] = useState(false)
+  useOnClickOutside(ref, () => setIsMenuOpened(false))
   return (
     <>
-      <MenuOverlay
-        isMenuOpened={isMenuOpened}
-        onClick={() => setIsMenuOpened(false)}
-        className="d-flex position-fixed h-100 w-100"
-      />
-      <Menu isMenuOpened={isMenuOpened}>
+      <Menu ref={ref} isMenuOpened={isMenuOpened}>
         <div className="d-flex justify-content-end">
           <ButtonClose type="button">
             <RiCloseFill
@@ -55,17 +54,25 @@ const Header: React.FC = () => {
           </ButtonClose>
         </div>
         <MenuNavigation icon={TiHome} title="Inicial" link="/" />
-        <MenuNavigation icon={MdOutlineInfo} title="Sobre a cidade" link="/" />
+        <MenuNavigation
+          icon={MdOutlineInfo}
+          title="Sobre a cidade"
+          link="/sobre-a-cidade"
+        />
         <MenuNavigation
           icon={FaUmbrellaBeach}
           title="Pontos Turísticos"
-          link="/"
+          link="/pontos-turisticos"
         />
-        <MenuNavigation icon={FaBed} title="Hotéis e Pousadas" link="/" />
+        <MenuNavigation
+          icon={FaBed}
+          title="Hotéis e Pousadas"
+          link="/hoteis-e-pousadas"
+        />
         <MenuNavigation
           icon={GiKnifeFork}
           title="Bares e Restaurantes"
-          link="/"
+          link="/bares-e-restaurantes"
         />
         <MenuNavigation icon={FaMotorcycle} title="Delivery" link="/" />
         <MenuNavigation icon={AiOutlineShop} title="Comércio Local" link="/" />
@@ -77,9 +84,13 @@ const Header: React.FC = () => {
         <MenuNavigation
           icon={GiMicrophone}
           title="Espaços para Eventos"
-          link="/"
+          link="/espaco-para-eventos"
         />
-        <MenuNavigation icon={FaRegCalendarAlt} title="Eventos" link="/" />
+        <MenuNavigation
+          icon={FaRegCalendarAlt}
+          title="Eventos"
+          link="/eventos"
+        />
         <MenuNavigation
           icon={FaMapMarkedAlt}
           title="Roteiros Turísticos"
@@ -100,6 +111,7 @@ const Header: React.FC = () => {
                 src={Logo}
                 alt="Conheça Maricá"
               />
+
               <img
                 className="img-fluid d-flex d-md-none"
                 src={LogoMobile}

@@ -8,38 +8,49 @@ import {
   ImageBackground,
   ImageLink,
   LinkTitle,
-  PointTitle,
+  PageTitle,
 } from './styles'
 
 interface IPagesCardProps {
   apiContent: Page
-  handleBtn: (id: number) => void
+  fetchCategory?: (id: number) => void
+  title: string
 }
 
-const PagesCard: React.FC<IPagesCardProps> = ({ apiContent, handleBtn }) => {
+const PagesCard: React.FC<IPagesCardProps> = ({
+  apiContent,
+  fetchCategory,
+  title,
+}) => {
   return (
     <CardContainer>
-      <ImageLink to="/">
+      <ImageLink to={`/${title}/${apiContent.id}`}>
         <ImageBackground background={apiContent.capa} />
       </ImageLink>
       <div className="p-3">
         <div>
-          <PointTitle>
-            <LinkTitle to="/">{apiContent.nome}</LinkTitle>
-          </PointTitle>
+          <PageTitle>
+            <LinkTitle to={`/${title}/${apiContent.id}`}>
+              {apiContent.nome}
+            </LinkTitle>
+          </PageTitle>
           <div className="d-flex gap-2 flex-wrap">
-            {apiContent.categorias.map((category) => (
-              <ButtonCategory
-                type="button"
-                onClick={() => handleBtn(category.id)}
-              >
-                {category.label}
-              </ButtonCategory>
-            ))}
+            {fetchCategory &&
+              apiContent.categorias.map((category) => (
+                <ButtonCategory
+                  key={category.id}
+                  type="button"
+                  onClick={() => fetchCategory(category.id)}
+                >
+                  {category.label}
+                </ButtonCategory>
+              ))}
           </div>
         </div>
         {apiContent?.enderecos.map((address) => (
-          <p className="mt-3 mb-5 text-muted fs-sm">{address.label}</p>
+          <p key={address.id} className="mt-3 mb-5 text-muted fs-sm">
+            {address.label}
+          </p>
         ))}
       </div>
     </CardContainer>

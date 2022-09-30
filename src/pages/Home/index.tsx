@@ -97,7 +97,7 @@ const Home: React.FC = () => {
               <NavigationCard
                 icon={GiMicrophone}
                 linkReact="Link"
-                link="/espaco-para-eventos"
+                link="/espacos-para-eventos"
                 title="Espaços para Eventos"
                 description="Locais para fazer suas festas ou reuniões"
               />

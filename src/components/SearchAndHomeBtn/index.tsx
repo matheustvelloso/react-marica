@@ -9,9 +9,14 @@ import { InputContainer, LinkBackToHome, MapButton, PageTitle } from './styles'
 interface ISearchAndHomeBtn {
   title: string
   children?: React.ReactNode
+  path?: string
 }
 
-const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({ title, children }) => {
+const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({
+  title,
+  children,
+  path,
+}) => {
   return (
     <Container className="d-md-flex justify-content-between align-items-center pt-3 pt-md-4 pb-4">
       <div className="d-flex">
@@ -21,7 +26,7 @@ const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({ title, children }) => {
         <PageTitle>{title}</PageTitle>
       </div>
       <div className="d-flex">
-        <MapButton to="/">
+        <MapButton to={`/mapa/${path}/${title}`}>
           <FaMapMarkedAlt />
           <span>Mapa</span>
         </MapButton>

@@ -11,6 +11,7 @@ interface ImportMetaEnv {
   readonly VITE_COMPANY_TWITTER: string
   readonly VITE_COMPANY_YOUTUBE: string
   readonly VITE_APP_MARICA: string
+  readonly VITE_GOOGLE_API_KEY: string
   // add more env variables here...
 }
 

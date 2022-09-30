@@ -6,22 +6,25 @@ import { ButtonCategory, CategoriesList } from './styles'
 
 interface ICategoriesProps {
   categories: Category[] | undefined
-  handleBtn: (id: number) => void
+  fetchCategory: (id: number) => void
 }
 
-const Categories: React.FC<ICategoriesProps> = ({ categories, handleBtn }) => {
+const Categories: React.FC<ICategoriesProps> = ({
+  categories,
+  fetchCategory,
+}) => {
   return (
     <div className="mb-4">
       <CategoriesList>
-        {categories &&
-          categories.map((category) => (
-            <ButtonCategory
-              type="button"
-              onClick={() => handleBtn(category.id)}
-            >
-              {category.label}
-            </ButtonCategory>
-          ))}
+        {categories?.map((category) => (
+          <ButtonCategory
+            key={category.id}
+            type="button"
+            onClick={() => fetchCategory(category.id)}
+          >
+            {category.label}
+          </ButtonCategory>
+        ))}
       </CategoriesList>
     </div>
   )

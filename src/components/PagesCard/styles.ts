@@ -36,7 +36,7 @@ export const ImageLink = styled(Link)`
   border-top-right-radius: 5px;
   overflow: hidden;
 `
-export const PointTitle = styled.h2`
+export const PageTitle = styled.h2`
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 0.5rem;

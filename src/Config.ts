@@ -2,6 +2,7 @@ const Config = {
   api: {
     base_URL: import.meta.env.VITE_MARICA_API_BASE_URL,
     token: import.meta.env.VITE_API_TOKEN,
+    key: import.meta.env.VITE_GOOGLE_API_KEY,
   },
   app: {
     name: import.meta.env.VITE_APP_NAME,
