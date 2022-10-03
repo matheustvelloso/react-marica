@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 
 import ReactDOM from 'react-dom/client'
 
@@ -13,10 +13,8 @@ import GlobalStyles from 'styles/globalStyles'
 import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
   <Suspense>
     <App />
     <GlobalStyles />
   </Suspense>,
-  // </React.StrictMode>,
 )
