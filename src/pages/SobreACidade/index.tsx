@@ -10,6 +10,7 @@ import Header from 'components/Header'
 import MaricaApi from 'services/MaricaClient'
 
 import {
+  ContentContainer,
   ImageBackground,
   LinkBackToHome,
   MaricaAboutContainer,
@@ -41,7 +42,9 @@ const SobreACidade: React.FC = () => {
               </LinkBackToHome>
               <PageTitle>Conheça Maricá</PageTitle>
             </div>
-            <div>{content && <div>{parse(content)}</div>}</div>
+            <ContentContainer>
+              {content && <div>{parse(content)}</div>}
+            </ContentContainer>
           </MaricaAboutContainer>
         </Container>
       </main>

@@ -37,3 +37,13 @@ export const MaricaAboutContainer = styled.div`
   box-shadow: rgb(0 0 0 / 30%) 0px 1px 5px;
   transform: translateY(-200px);
 `
+
+export const ContentContainer = styled.div`
+  p {
+    font-size: 18px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+`
