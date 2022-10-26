@@ -4,6 +4,22 @@ interface IMenuProps {
   isMenuOpened: boolean
 }
 
+const fadeIn = keyframes`
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+`
+const fadeOut = keyframes`
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+`
 const enter = keyframes`
     from{
         right: -160px;
@@ -55,6 +71,14 @@ export const Menu = styled.div<IMenuProps>`
   transition: all 0.2s ease-out;
   color: #fff;
   z-index: 3;
+`
+export const MenuOverlay = styled.div<IMenuProps>`
+  opacity: ${(props) => (props.isMenuOpened ? 1 : 0)};
+  visibility: ${(props) => (props.isMenuOpened ? 'visible' : 'hidden')};
+  animation: ${(props) => (props.isMenuOpened ? fadeIn : fadeOut)} 0.2s ease-out;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-out;
+  z-index: 2;
 `
 
 export const ButtonClose = styled.button`

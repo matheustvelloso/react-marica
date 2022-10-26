@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsGlobe2, BsWhatsapp } from 'react-icons/bs'
 import { FaBed, FaCoffee, FaFacebook, FaInstagram } from 'react-icons/fa'
@@ -26,6 +27,7 @@ import Header from 'components/Header'
 import MapMarker from 'components/MapMarker'
 
 import useHoteisEPousadas from 'hooks/useHoteisEPousadas'
+import useTitle from 'hooks/useTitle'
 
 import {
   IconContainer,
@@ -39,11 +41,18 @@ const HotelEPousada: React.FC = () => {
   const { id } = useParams()
   const { fetchSimpleMotelAndInn, fetchCategory, simpleMotelAndInn } =
     useHoteisEPousadas()
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   useEffect(() => {
     if (id) fetchSimpleMotelAndInn(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
+
+  useEffect(() => {
+    if (simpleMotelAndInn?.nome) setTitle(t(simpleMotelAndInn.nome))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage, simpleMotelAndInn?.nome])
   return (
     <>
       <Header />

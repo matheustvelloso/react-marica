@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsClock, BsGlobe2, BsWhatsapp } from 'react-icons/bs'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
@@ -26,6 +27,7 @@ import Header from 'components/Header'
 import MapMarker from 'components/MapMarker'
 
 import useBaresERestaurantes from 'hooks/useBaresERestaurantes'
+import useTitle from 'hooks/useTitle'
 
 import {
   IconContainer,
@@ -37,6 +39,8 @@ import {
 
 const BarERestaurante: React.FC = () => {
   const { id } = useParams()
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   const { fetchBarAndRestaurant, fetchCategory, barAndRestaurant } =
     useBaresERestaurantes()
@@ -45,6 +49,12 @@ const BarERestaurante: React.FC = () => {
     if (id) fetchBarAndRestaurant(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
+
+  useEffect(() => {
+    if (barAndRestaurant?.nome) setTitle(t(barAndRestaurant.nome))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage, barAndRestaurant?.nome])
+
   const priceRange = (range: number): string[] => {
     const colorIconArray = []
     for (let i = 0; i < range; i += 1) {

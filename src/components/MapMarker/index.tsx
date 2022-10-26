@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { ImLocation } from 'react-icons/im'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import { IconContainer } from './styles'
 
@@ -13,7 +13,7 @@ interface IMapMarkerProps {
 const MapMarker: React.FC<IMapMarkerProps> = () => {
   return (
     <IconContainer>
-      <ImLocation color="red" size={30} />
+      <FaMapMarkerAlt color="#dd4b3e" size={28} />
     </IconContainer>
   )
 }

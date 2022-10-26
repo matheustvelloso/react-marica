@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsClock, BsGlobe2, BsWhatsapp } from 'react-icons/bs'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
@@ -25,6 +26,7 @@ import Header from 'components/Header'
 import MapMarker from 'components/MapMarker'
 
 import useComercioLocal from 'hooks/useComercioLocal'
+import useTitle from 'hooks/useTitle'
 
 import {
   IconContainer,
@@ -36,6 +38,8 @@ import {
 
 const Comércio: React.FC = () => {
   const { id } = useParams()
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   const { fetchMarket, fetchCategory, market } = useComercioLocal()
 
@@ -43,6 +47,11 @@ const Comércio: React.FC = () => {
     if (id) fetchMarket(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
+
+  useEffect(() => {
+    if (market?.nome) setTitle(t(market.nome))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage, market?.nome])
 
   return (
     <>

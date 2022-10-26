@@ -1,6 +1,7 @@
-import { FormEvent, memo, useCallback, useState } from 'react'
+import { FormEvent, memo, useCallback, useEffect, useState } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { FiSearch } from 'react-icons/fi'
 
 import Categories from 'components/Categories'
@@ -10,10 +11,13 @@ import PagesCard from 'components/PagesCard'
 import SearchAndHomeBtn from 'components/SearchAndHomeBtn'
 
 import useHoteisEPousadas from 'hooks/useHoteisEPousadas'
+import useTitle from 'hooks/useTitle'
 
 const HotéisEPousadas: React.FC = () => {
   const { motelAndInn, category, searchMotelAndInn, fetchCategory } =
     useHoteisEPousadas()
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
   const [value, setValue] = useState('')
 
   const handleSubmit = useCallback(
@@ -23,6 +27,12 @@ const HotéisEPousadas: React.FC = () => {
     },
     [searchMotelAndInn, value],
   )
+
+  useEffect(() => {
+    setTitle(t('Hotéis e Pousadas'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage])
+
   return (
     <>
       <Header />

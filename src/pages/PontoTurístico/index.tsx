@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsGlobe2, BsWhatsapp } from 'react-icons/bs'
 import { FaFacebook, FaInstagram, FaRegMoneyBillAlt } from 'react-icons/fa'
@@ -25,6 +26,7 @@ import Header from 'components/Header'
 import MapMarker from 'components/MapMarker'
 
 import usePontosTuristicos from 'hooks/usePontosTuristicos'
+import useTitle from 'hooks/useTitle'
 
 import {
   IconContainer,
@@ -36,6 +38,8 @@ import {
 
 const PontoTurístico: React.FC = () => {
   const { fetchCategory, fetchPoint, point } = usePontosTuristicos()
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   const { id } = useParams()
 
@@ -44,6 +48,11 @@ const PontoTurístico: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
+
+  useEffect(() => {
+    if (point?.nome) setTitle(t(point.nome))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage, point?.nome])
   return (
     <>
       <Header />

@@ -13,7 +13,12 @@ import Eventos from 'pages/Eventos'
 import Home from 'pages/Home'
 import HotéisEPousadas from 'pages/HotéisEPousadas'
 import HotelEPousada from 'pages/HotelEPousada'
-import Mapa from 'pages/Mapa'
+import MapaBaresERestaurantes from 'pages/MapaBaresERestaurantes'
+import MapaComércioLocal from 'pages/MapaComércioLocal'
+import MapaEspaçosParaEventos from 'pages/MapaEspaçosParaEventos'
+import MapaEventos from 'pages/MapaEventos'
+import MapaHotéisEPousadas from 'pages/MapaHotéisEPousadas'
+import MapaPontosTurísticos from 'pages/MapaPontosTurísticos'
 import NotFound from 'pages/NotFound'
 import PontosTurísticos from 'pages/PontosTurísticos'
 import PontoTurístico from 'pages/PontoTurístico'
@@ -40,7 +45,24 @@ const Routes: React.FC = () => {
         <Route path="/eventos" element={<Eventos />} />
         <Route path="/evento/:id" element={<Evento />} />
         <Route path="/sobre-a-cidade" element={<SobreACidade />} />
-        <Route path="/mapa/:name/:title" element={<Mapa />} />
+        <Route
+          path="/mapa/pontos-turisticos"
+          element={<MapaPontosTurísticos />}
+        />
+        <Route
+          path="/mapa/hoteis-e-pousadas"
+          element={<MapaHotéisEPousadas />}
+        />
+        <Route
+          path="/mapa/bares-e-restaurantes"
+          element={<MapaBaresERestaurantes />}
+        />
+        <Route path="/mapa/comercio-local" element={<MapaComércioLocal />} />
+        <Route
+          path="/mapa/espacos-para-eventos"
+          element={<MapaEspaçosParaEventos />}
+        />
+        <Route path="/mapa/eventos" element={<MapaEventos />} />
         <Route path="*" element={<NotFound />} />
       </Switch>
     </BrowserRouter>

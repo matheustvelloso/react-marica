@@ -1,6 +1,7 @@
-import { FormEvent, memo, useCallback, useState } from 'react'
+import { FormEvent, memo, useCallback, useEffect, useState } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { FiSearch } from 'react-icons/fi'
 
 import Categories from 'components/Categories'
@@ -10,10 +11,13 @@ import PagesCard from 'components/PagesCard'
 import SearchAndHomeBtn from 'components/SearchAndHomeBtn'
 
 import useEventos from 'hooks/useEventos'
+import useTitle from 'hooks/useTitle'
 
 const Eventos: React.FC = () => {
   const { events, category, searchEvents, fetchCategory } = useEventos()
   const [value, setValue] = useState('')
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -22,11 +26,15 @@ const Eventos: React.FC = () => {
     },
     [searchEvents, value],
   )
+  useEffect(() => {
+    setTitle(t('Eventos'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage])
 
   return (
     <>
       <Header />
-      <SearchAndHomeBtn title="Eventos">
+      <SearchAndHomeBtn title="Eventos" path="eventos">
         <form onSubmit={handleSubmit}>
           <input
             type="text"

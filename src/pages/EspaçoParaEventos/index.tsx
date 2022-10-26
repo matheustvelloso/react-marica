@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsClock, BsGlobe2, BsWhatsapp } from 'react-icons/bs'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
@@ -26,6 +27,7 @@ import Header from 'components/Header'
 import MapMarker from 'components/MapMarker'
 
 import useEspaçoParaEventos from 'hooks/useEspaçoParaEventos'
+import useTitle from 'hooks/useTitle'
 
 import {
   IconContainer,
@@ -37,6 +39,8 @@ import {
 
 const EpaçoParaEventos: React.FC = () => {
   const { id } = useParams()
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   const { fetchEventPlace, fetchCategory, eventPlace } = useEspaçoParaEventos()
 
@@ -44,6 +48,11 @@ const EpaçoParaEventos: React.FC = () => {
     if (id) fetchEventPlace(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
+
+  useEffect(() => {
+    if (eventPlace?.nome) setTitle(t(eventPlace.nome))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage, eventPlace?.nome])
 
   return (
     <>

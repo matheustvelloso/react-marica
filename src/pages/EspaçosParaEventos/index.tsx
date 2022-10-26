@@ -1,6 +1,7 @@
-import { FormEvent, memo, useCallback, useState } from 'react'
+import { FormEvent, memo, useCallback, useEffect, useState } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { FiSearch } from 'react-icons/fi'
 
 import Categories from 'components/Categories'
@@ -10,11 +11,14 @@ import PagesCard from 'components/PagesCard'
 import SearchAndHomeBtn from 'components/SearchAndHomeBtn'
 
 import useEspaçoParaEventos from 'hooks/useEspaçoParaEventos'
+import useTitle from 'hooks/useTitle'
 
 const EspaçosParaEventos: React.FC = () => {
   const { eventsPlaces, category, searchEventsPlaces, fetchCategory } =
     useEspaçoParaEventos()
   const [value, setValue] = useState('')
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -23,11 +27,15 @@ const EspaçosParaEventos: React.FC = () => {
     },
     [searchEventsPlaces, value],
   )
+  useEffect(() => {
+    setTitle(t('Espaços para Eventos'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage])
 
   return (
     <>
       <Header />
-      <SearchAndHomeBtn title="Espaço para eventos">
+      <SearchAndHomeBtn title="Espaço para eventos" path="espacos-para-eventos">
         <form onSubmit={handleSubmit}>
           <input
             type="text"

@@ -26,7 +26,7 @@ const SearchAndHomeBtn: React.FC<ISearchAndHomeBtn> = ({
         <PageTitle>{title}</PageTitle>
       </div>
       <div className="d-flex">
-        <MapButton to={`/mapa/${path}/${title}`}>
+        <MapButton to={`/mapa/${path}`}>
           <FaMapMarkedAlt />
           <span>Mapa</span>
         </MapButton>

@@ -1,52 +1,33 @@
-import { memo, useRef, useState } from 'react'
+import { Dispatch, memo, SetStateAction } from 'react'
 
-import { Overlay, Popover } from 'react-bootstrap'
-import { ImLocation } from 'react-icons/im'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import PagesCard from 'components/PagesCard'
 
-import useOnClickOutside from 'hooks/useOnClickOutside'
-
 import { Point } from 'types/PointType'
 
-import { Button, IconContainer } from './styles'
+import { Button, IconContainer, Menu } from './styles'
 
 interface IMarkerProps {
   point: Point
   lat: number
   lng: number
+  show: boolean
+  setShow: Dispatch<SetStateAction<boolean>>
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Marker: React.FC<IMarkerProps> = ({ point }) => {
-  const ref = useRef<HTMLButtonElement>(null)
-  const [show, setShow] = useState(false)
-  const [target, setTarget] = useState(null)
-
-  useOnClickOutside(ref, () => setShow(false))
-
+const Marker: React.FC<IMarkerProps> = ({ point, show, setShow }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleClick = (event: any): void => {
-    setShow(!show)
-    setTarget(event.target)
-  }
+
   return (
     <IconContainer>
-      <Button type="button" ref={ref} onClick={handleClick}>
-        <ImLocation color="red" size={30} />
+      <Button type="button" onClick={() => setShow(!show)}>
+        <FaMapMarkerAlt color="#dd4b3e" size={28} />
       </Button>
-
-      <Overlay
-        show={show}
-        target={target}
-        placement="bottom"
-        container={ref}
-        containerPadding={20}
-      >
-        <Popover id="popover-contained" style={{ width: '300px' }}>
-          <PagesCard apiContent={point} title="malany" />
-        </Popover>
-      </Overlay>
+      <Menu show={show}>
+        <PagesCard apiContent={point} title="malany" />
+      </Menu>
     </IconContainer>
   )
 }

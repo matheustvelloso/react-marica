@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react'
+import { memo, useState } from 'react'
 
 import { Container } from 'react-bootstrap'
 import { AiOutlineShop } from 'react-icons/ai'
@@ -25,8 +25,6 @@ import LogoMobile from 'assets/LogoMobile.png'
 
 import Config from 'Config'
 
-import useOnClickOutside from 'hooks/useOnClickOutside'
-
 import MenuNavigation from './MenuNavigation'
 import {
   HeaderBackground,
@@ -35,16 +33,20 @@ import {
   Menu,
   NavContainer,
   ButtonClose,
+  MenuOverlay,
 } from './styles'
 
 const Header: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null)
-
   const [isMenuOpened, setIsMenuOpened] = useState(false)
-  useOnClickOutside(ref, () => setIsMenuOpened(false))
+
   return (
     <>
-      <Menu ref={ref} isMenuOpened={isMenuOpened}>
+      <MenuOverlay
+        isMenuOpened={isMenuOpened}
+        onClick={() => setIsMenuOpened(false)}
+        className="d-flex position-fixed h-100 w-100"
+      />
+      <Menu isMenuOpened={isMenuOpened}>
         <div className="d-flex justify-content-end">
           <ButtonClose type="button">
             <RiCloseFill
@@ -75,7 +77,11 @@ const Header: React.FC = () => {
           link="/bares-e-restaurantes"
         />
         <MenuNavigation icon={FaMotorcycle} title="Delivery" link="/" />
-        <MenuNavigation icon={AiOutlineShop} title="Comércio Local" link="/" />
+        <MenuNavigation
+          icon={AiOutlineShop}
+          title="Comércio Local"
+          link="/comercio-local"
+        />
         <MenuNavigation
           icon={RiCoupon2Fill}
           title="Cupons de Desconto"

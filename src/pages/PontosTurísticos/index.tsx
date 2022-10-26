@@ -1,6 +1,7 @@
-import { FormEvent, memo, useCallback, useState } from 'react'
+import { FormEvent, memo, useCallback, useEffect, useState } from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { FiSearch } from 'react-icons/fi'
 
 import Categories from 'components/Categories'
@@ -10,10 +11,14 @@ import PagesCard from 'components/PagesCard'
 import SearchAndHomeBtn from 'components/SearchAndHomeBtn'
 
 import usePontosTuristicos from 'hooks/usePontosTuristicos'
+import useTitle from 'hooks/useTitle'
 
 const PontosTurísticos: React.FC = () => {
   const { points, category, searchPoints, fetchCategory } =
     usePontosTuristicos()
+
+  const { t, i18n } = useTranslation()
+  const setTitle = useTitle()
   const [value, setValue] = useState('')
 
   const handleSubmit = useCallback(
@@ -23,6 +28,11 @@ const PontosTurísticos: React.FC = () => {
     },
     [searchPoints, value],
   )
+
+  useEffect(() => {
+    setTitle(t('Pontos Turísticos'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.resolvedLanguage])
 
   return (
     <>
