@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { memo, useState } from 'react'
+import { memo } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 
@@ -16,7 +16,6 @@ interface IMapProps {
 }
 
 const Map: React.FC<IMapProps> = ({ endPoint, fetchCategory, title }) => {
-  const [overlay, setOverlay] = useState(true)
   return (
     <div>
       {endPoint?.length && (
@@ -28,7 +27,6 @@ const Map: React.FC<IMapProps> = ({ endPoint, fetchCategory, title }) => {
               lng: -42.8180507,
             }}
             defaultZoom={13}
-            onClick={() => setOverlay(false)}
           >
             {endPoint?.map((_endPoint) => (
               <Marker
@@ -36,8 +34,6 @@ const Map: React.FC<IMapProps> = ({ endPoint, fetchCategory, title }) => {
                 point={_endPoint}
                 lat={_endPoint.lat}
                 lng={_endPoint.lng}
-                overlay={overlay}
-                setOverlay={setOverlay}
                 fetchCategory={fetchCategory}
                 title={title}
               />
