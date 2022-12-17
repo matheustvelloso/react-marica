@@ -37,23 +37,30 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
   setCategoryValue,
 }) => {
   const [show, setShow] = useState(false)
+  const [pageTitle, setPageTitle] = useState(title)
 
   const handleSearchButton = useCallback(() => {
     search(value)
     setShow(true)
     setCategoryValue('')
+    setPageTitle('Resultados da busca')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, value])
 
   const handleNavigationButton = useCallback(() => {
     fetch()
     setCategoryValue('')
+    setShow(false)
+    setPageTitle(title)
+    setValue('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const clearSearchButton = useCallback(() => {
     fetch()
     setValue('')
+    setPageTitle(title)
+    setShow(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -63,7 +70,7 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
       className="d-md-flex justify-content-between align-items-center pt-3 pt-md-4 pb-4"
     >
       <div className="d-flex">
-        {categoryValue === '' ? (
+        {categoryValue === '' && show === false ? (
           <LinkBackToHome to="/">
             <IoMdArrowBack className="me-2" />
           </LinkBackToHome>
@@ -73,8 +80,9 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
           </ButtonFetch>
         )}
         <div>
-          {categoryValue && <span className="fs-sm fw-light">{title}</span>}
-          <PageTitle>{categoryValue || title}</PageTitle>
+          {categoryValue ||
+            (show === true && <span className="fs-sm fw-light">{title}</span>)}
+          <PageTitle>{pageTitle}</PageTitle>
         </div>
       </div>
       <div className="d-flex">
