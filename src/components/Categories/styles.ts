@@ -24,7 +24,7 @@ export const ButtonCategory = styled.button`
   font-size: 18px;
   padding: 0px 20px;
   white-space: nowrap;
-  margin: 0 10px 10px 10px;
+  margin: 0 10px 10px 0;
   border: none;
 
   &:hover {

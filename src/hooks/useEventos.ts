@@ -14,6 +14,7 @@ type EventosType = () => {
   searchEvents: (busca: string) => Promise<void>
   fetchCategory: (id: number) => Promise<void>
   fetchEvent: (pointId: string) => Promise<void>
+  loading: boolean
 }
 
 const useEventos: EventosType = () => {
@@ -27,7 +28,13 @@ const useEventos: EventosType = () => {
       setLoading(true)
       const {
         data: { categorias, collection },
-      } = await MaricaApi.get('/eventos')
+      } = await MaricaApi.get('/eventos', {
+        params: {
+          fields: 'datahora_inicio',
+          orderby: 'datahora_inicio',
+          order: 'asc',
+        },
+      })
       setCategory(categorias)
       setEvents(collection)
     } catch (e) {
@@ -46,6 +53,9 @@ const useEventos: EventosType = () => {
       } = await MaricaApi.get('/eventos/busca', {
         params: {
           busca,
+          fields: 'datahora_inicio',
+          orderby: 'datahora_inicio',
+          order: 'asc',
         },
       })
       setCategory(categorias)

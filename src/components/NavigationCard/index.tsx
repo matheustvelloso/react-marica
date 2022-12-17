@@ -3,7 +3,8 @@ import { memo } from 'react'
 import { IconType } from 'react-icons'
 
 import {
-  ButtonAccess,
+  ButtonAccessExternalLink,
+  ButtonAccessLink,
   CardContainer,
   CardContent,
   DescriptionSpan,
@@ -44,7 +45,17 @@ const NavigationCard: React.FC<INavigationCardProps> = ({
           )}
         </h2>
         <DescriptionSpan>{description}</DescriptionSpan>
-        <ButtonAccess to={link}>Acessar</ButtonAccess>
+        {linkReact === 'Link' ? (
+          <ButtonAccessLink to={link}>Acessar</ButtonAccessLink>
+        ) : (
+          <ButtonAccessExternalLink
+            href={link}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Acessar
+          </ButtonAccessExternalLink>
+        )}
       </CardContent>
     </CardContainer>
   )

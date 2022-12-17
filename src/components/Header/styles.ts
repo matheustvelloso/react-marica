@@ -60,6 +60,7 @@ export const MenuButton = styled.button`
   border: none;
 `
 export const Menu = styled.div<IMenuProps>`
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -88,4 +89,19 @@ export const ButtonClose = styled.button`
   border: none;
   justify-content: flex-end;
   padding: 1rem;
+`
+export const ExternalLinkContainer = styled.a`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #222222;
+  padding: 16px;
+  width: 100%;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+
+  &:hover {
+    color: #fff;
+  }
 `

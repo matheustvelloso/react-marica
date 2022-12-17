@@ -10,15 +10,15 @@ import {
   FaYoutube,
   FaUmbrellaBeach,
   FaBed,
-  FaMotorcycle,
   FaRegCalendarAlt,
   FaMapMarkedAlt,
 } from 'react-icons/fa'
 import { GiKnifeFork, GiMicrophone } from 'react-icons/gi'
 import { MdOutlineInfo } from 'react-icons/md'
-import { RiCloseFill, RiCoupon2Fill } from 'react-icons/ri'
+import { RiCloseFill } from 'react-icons/ri'
 import { TbFlower } from 'react-icons/tb'
 import { TiHome } from 'react-icons/ti'
+import { Link } from 'react-router-dom'
 
 import Logo from 'assets/Logo.png'
 import LogoMobile from 'assets/LogoMobile.png'
@@ -34,6 +34,7 @@ import {
   NavContainer,
   ButtonClose,
   MenuOverlay,
+  ExternalLinkContainer,
 } from './styles'
 
 const Header: React.FC = () => {
@@ -76,33 +77,37 @@ const Header: React.FC = () => {
           title="Bares e Restaurantes"
           link="/bares-e-restaurantes"
         />
-        <MenuNavigation icon={FaMotorcycle} title="Delivery" link="/" />
         <MenuNavigation
           icon={AiOutlineShop}
           title="Comércio Local"
           link="/comercio-local"
         />
         <MenuNavigation
-          icon={RiCoupon2Fill}
-          title="Cupons de Desconto"
-          link="/"
-        />
-        <MenuNavigation
           icon={GiMicrophone}
           title="Espaços para Eventos"
-          link="/espaco-para-eventos"
+          link="/espacos-para-eventos"
         />
         <MenuNavigation
           icon={FaRegCalendarAlt}
           title="Eventos"
           link="/eventos"
         />
-        <MenuNavigation
-          icon={FaMapMarkedAlt}
-          title="Roteiros Turísticos"
-          link="/"
-        />
-        <MenuNavigation icon={TbFlower} title="Artesanato" link="/" />
+        <ExternalLinkContainer
+          href="https://contato.site/5d9bab8/marica-cvb3/paginaprincipal"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FaMapMarkedAlt />
+          <span className="ms-2">Roteiros Turísticos</span>
+        </ExternalLinkContainer>
+        <ExternalLinkContainer
+          href="https://www.feirartemarica.com.br/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <TbFlower />
+          <span className="ms-2">Artesanato</span>
+        </ExternalLinkContainer>
       </Menu>
       <HeaderBackground>
         <Container>
@@ -112,17 +117,20 @@ const Header: React.FC = () => {
               <span className="ms-2 d-none d-md-inline-block">Menu</span>
             </MenuButton>
             <div>
-              <img
-                className="img-fluid d-none d-md-flex"
-                src={Logo}
-                alt="Conheça Maricá"
-              />
-
-              <img
-                className="img-fluid d-flex d-md-none"
-                src={LogoMobile}
-                alt="LogoMobile"
-              />
+              <Link to="/">
+                <img
+                  className="img-fluid d-none d-md-flex"
+                  src={Logo}
+                  alt="Conheça Maricá"
+                />
+              </Link>
+              <Link to="/">
+                <img
+                  className="img-fluid d-flex d-md-none"
+                  src={LogoMobile}
+                  alt="LogoMobile"
+                />
+              </Link>
             </div>
             <NavContainer className="d-none d-md-block">
               <a

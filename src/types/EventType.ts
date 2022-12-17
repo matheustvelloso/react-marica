@@ -13,6 +13,7 @@ export type Event = {
   capa: string
   lat: number
   lng: number
+  datahora_inicio: string
   categorias: Category[]
   enderecos: Address[]
 }

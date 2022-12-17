@@ -12,7 +12,7 @@ import useTitle from 'hooks/useTitle'
 import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
 
 const MapaBaresERestaurantes: React.FC = () => {
-  const { barsAndRestaurants } = useBaresERestaurantes()
+  const { barsAndRestaurants, fetchCategory } = useBaresERestaurantes()
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
@@ -30,7 +30,11 @@ const MapaBaresERestaurantes: React.FC = () => {
           </LinkBackToHome>
           <PageTitle>Bares e Restaurantes</PageTitle>
         </ButtonContainer>
-        <Map endPoint={barsAndRestaurants} />
+        <Map
+          endPoint={barsAndRestaurants}
+          title="bares-e-restaurantes"
+          fetchCategory={fetchCategory}
+        />
       </main>
     </>
   )

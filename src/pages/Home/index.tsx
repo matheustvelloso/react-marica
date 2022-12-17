@@ -6,12 +6,10 @@ import { AiOutlineShop } from 'react-icons/ai'
 import {
   FaUmbrellaBeach,
   FaBed,
-  FaMotorcycle,
   FaRegCalendarAlt,
   FaMapMarkedAlt,
 } from 'react-icons/fa'
 import { GiKnifeFork, GiMicrophone } from 'react-icons/gi'
-import { RiCoupon2Fill } from 'react-icons/ri'
 import { TbFlower } from 'react-icons/tb'
 import { TiHome } from 'react-icons/ti'
 
@@ -68,29 +66,11 @@ const Home: React.FC = () => {
             </Col>
             <Col className="d-flex px-1 mb-2">
               <NavigationCard
-                icon={FaMotorcycle}
-                linkReact="Link"
-                link="/"
-                title="Delivery"
-                description="Receba o melhor de Maricá no conforto da sua casa"
-              />
-            </Col>
-            <Col className="d-flex px-1 mb-2">
-              <NavigationCard
                 icon={AiOutlineShop}
                 linkReact="Link"
                 link="/comercio-local"
                 title="Comércio Local"
                 description="Veja onde fazer as suas compras"
-              />
-            </Col>
-            <Col className="d-flex px-1 mb-2">
-              <NavigationCard
-                icon={RiCoupon2Fill}
-                linkReact="Link"
-                link="/"
-                title="Cupons de Desconto"
-                description="As melhores promoções para curtir a cidade"
               />
             </Col>
             <Col className="d-flex px-1 mb-2">

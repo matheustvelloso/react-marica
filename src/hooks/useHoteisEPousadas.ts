@@ -10,6 +10,7 @@ type HoteisEPousadasType = () => {
   motelAndInn: MotelAndInn[] | undefined
   simpleMotelAndInn: SimpleMotelAndInn | undefined
   category: Category[] | undefined
+  loading: boolean
   fetchMotelAndInn: () => Promise<void>
   searchMotelAndInn: (busca: string) => Promise<void>
   fetchCategory: (id: number) => Promise<void>

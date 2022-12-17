@@ -22,6 +22,7 @@ export const NavigationFooter = styled.nav`
 
     &:hover {
       color: #fff;
+      text-decoration: underline;
     }
   }
 `

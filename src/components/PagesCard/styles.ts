@@ -14,7 +14,6 @@ export const CardContainer = styled.div`
 
 export const ImageBackground = styled.div<ImageBackgroundProps>`
   background-image: url(${(props) => props.background});
-  height: 100%;
   position: absolute;
   inset: 0px;
   width: 100%;

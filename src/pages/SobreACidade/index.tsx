@@ -7,6 +7,8 @@ import { IoMdArrowBack } from 'react-icons/io'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
+import useTitle from 'hooks/useTitle'
+
 import MaricaApi from 'services/MaricaClient'
 
 import {
@@ -19,6 +21,7 @@ import {
 
 const SobreACidade: React.FC = () => {
   const [content, setContent] = useState('')
+  const setTitle = useTitle()
   const fetchAbout = useCallback(async () => {
     const { data } = await MaricaApi.get('/apps/get')
     setContent(data.sobre.content)
@@ -26,6 +29,7 @@ const SobreACidade: React.FC = () => {
 
   useEffect(() => {
     fetchAbout()
+    setTitle('Sobre a cidade')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

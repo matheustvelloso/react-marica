@@ -9,6 +9,15 @@ export const LinkBackToHome = styled(Link)`
     color: #121416;
   }
 `
+export const ButtonFetch = styled.button`
+  background-color: transparent;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-right: 20px;
+  border: none;
+  width: 0;
+  height: 0;
+`
 
 export const PageTitle = styled.h1`
   font-size: 28px;
@@ -36,13 +45,13 @@ export const MapButton = styled(Link)`
 `
 
 export const InputContainer = styled.div`
+  width: 100%;
   background-color: #fff;
   height: 40px;
   display: flex;
   align-items: center;
   border: 1px solid #333;
   border-radius: 20px;
-  width: 410px;
   margin-left: 10px;
   white-space: nowrap;
 
