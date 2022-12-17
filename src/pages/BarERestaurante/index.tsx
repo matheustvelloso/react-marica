@@ -354,7 +354,7 @@ const BarERestaurante: React.FC = () => {
                         </div>
                       )}
                   </div>
-                  <div className="mb-5 ms-5">
+                  <div className="mb-5 ms-lg-5">
                     <div className="mb-4">
                       <h2 className="fs-md fw-bold d-none d-lg-block mb-3">
                         Localização
