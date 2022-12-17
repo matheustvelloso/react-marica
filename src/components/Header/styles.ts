@@ -60,7 +60,7 @@ export const MenuButton = styled.button`
   border: none;
 `
 export const Menu = styled.div<IMenuProps>`
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   position: fixed;
