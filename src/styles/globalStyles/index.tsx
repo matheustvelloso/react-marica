@@ -93,4 +93,9 @@ export default createGlobalStyle`
         padding-bottom: 5px;
         content: '<';
     }
+    .fs-small{
+        @media(max-width: 575px){
+            font-size: 14px;
+        }
+    }
 `

@@ -139,7 +139,7 @@ const HotelEPousada: React.FC = () => {
                       </div>
                       <div className="d-flex flex-column fs-md mb-3">
                         {simpleMotelAndInn?.email && (
-                          <div className="d-flex align-items-center mb-3">
+                          <div className="d-flex align-items-center mb-3 fs-small">
                             <IconContainer>
                               <AiOutlineMail />
                             </IconContainer>
@@ -147,7 +147,7 @@ const HotelEPousada: React.FC = () => {
                           </div>
                         )}
                         {simpleMotelAndInn?.site && (
-                          <div className="d-flex align-items-center mb-3">
+                          <div className="d-flex align-items-center mb-3 fs-small">
                             <IconContainer>
                               <BsGlobe2 />
                             </IconContainer>
@@ -218,49 +218,49 @@ const HotelEPousada: React.FC = () => {
                       </div>
                       <div className="d-flex flex-column flex-md-row justify-content-between mb-3 fs-md">
                         {simpleMotelAndInn?.cafe_manha && (
-                          <div className="d-flex align-items-center">
+                          <div className="d-flex align-items-center mb-3">
                             <div>
                               <IconContainer>
                                 <FaCoffee />
                               </IconContainer>
                             </div>
                             <div>
-                              <p>Café da manhã</p>
-                              <p>
+                              <div>Café da manhã</div>
+                              <div>
                                 {simpleMotelAndInn?.cafe_hospedes === true
                                   ? 'Aceita não-hóspedes'
                                   : 'Aceita hóspedes'}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         )}
                         {simpleMotelAndInn?.almoco && (
-                          <div className="d-flex align-items-center">
+                          <div className="d-flex align-items-center mb-3">
                             <IconContainer>
                               <GiKnifeFork />
                             </IconContainer>
                             <div>
-                              <p>Almoço</p>
-                              <p>
+                              <div>Almoço</div>
+                              <div>
                                 {simpleMotelAndInn?.almoco === true
                                   ? 'Aceita não-hóspedes'
                                   : 'Aceita hóspedes'}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         )}
                         {simpleMotelAndInn?.jantar && (
-                          <div className="d-flex align-items-center">
+                          <div className="d-flex align-items-center mb-3">
                             <IconContainer>
                               <BiDish style={{ fontSize: '28px' }} />
                             </IconContainer>
                             <div>
-                              <p>Jantar</p>
-                              <p>
+                              <div>Jantar</div>
+                              <div>
                                 {simpleMotelAndInn?.jantar_hospedes === true
                                   ? 'Aceita não-hóspedes'
                                   : 'Aceita hóspedes'}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         )}

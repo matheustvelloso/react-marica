@@ -131,11 +131,25 @@ const PontoTurístico: React.FC = () => {
                       ))}
                       <div className="d-flex flex-column fs-md mb-3">
                         {point?.email && (
-                          <div className="d-flex align-items-center mb-3">
+                          <div className="d-flex align-items-center mb-3 fs-small">
                             <IconContainer>
                               <AiOutlineMail />
                             </IconContainer>
                             <div>{point?.email}</div>
+                          </div>
+                        )}
+                        {point?.site && (
+                          <div className="d-flex align-items-center mb-3 fs-small">
+                            <IconContainer>
+                              <BsGlobe2 />
+                            </IconContainer>
+                            <a
+                              href={point.site}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {point.site}
+                            </a>
                           </div>
                         )}
                         {point?.site && (

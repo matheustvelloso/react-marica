@@ -132,7 +132,7 @@ const Comércio: React.FC = () => {
                       </div>
                       <div className="d-flex flex-column fs-md mb-3">
                         {market?.email && (
-                          <div className="d-flex align-items-center mb-3">
+                          <div className="d-flex align-items-center mb-3 fs-small">
                             <IconContainer>
                               <AiOutlineMail />
                             </IconContainer>
@@ -140,7 +140,7 @@ const Comércio: React.FC = () => {
                           </div>
                         )}
                         {market?.site && (
-                          <div className="d-flex align-items-center mb-3">
+                          <div className="d-flex align-items-center mb-3 fs-small">
                             <IconContainer>
                               <BsGlobe2 />
                             </IconContainer>
