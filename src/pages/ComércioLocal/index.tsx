@@ -67,7 +67,7 @@ const ComércioLocal: React.FC = () => {
                         <PagesCard
                           apiContent={market}
                           fetchCategory={fetchCategory}
-                          title="comercio"
+                          title="comercio-local"
                         />
                       </Col>
                     ))}

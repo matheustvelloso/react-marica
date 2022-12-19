@@ -68,7 +68,7 @@ const Eventos: React.FC = () => {
                           apiContent={event}
                           fetchCategory={fetchCategory}
                           startDate={event?.datahora_inicio}
-                          title="evento"
+                          title="eventos"
                         />
                       </Col>
                     ))}

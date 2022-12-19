@@ -70,7 +70,7 @@ const HotéisEPousadas: React.FC = () => {
                         <PagesCard
                           apiContent={_motelAndInn}
                           fetchCategory={fetchCategory}
-                          title="hotel-e-pousada"
+                          title="hoteis-e-pousadas"
                         />
                       </Col>
                     ))}

@@ -67,7 +67,7 @@ const EspaçosParaEventos: React.FC = () => {
                         <PagesCard
                           apiContent={place}
                           fetchCategory={fetchCategory}
-                          title="espaco-para-eventos"
+                          title="espacos-para-eventos"
                         />
                       </Col>
                     ))}

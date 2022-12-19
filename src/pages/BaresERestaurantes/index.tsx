@@ -69,7 +69,7 @@ const BaresERestaurantes: React.FC = () => {
                         <PagesCard
                           apiContent={barAndRestaurant}
                           fetchCategory={fetchCategory}
-                          title="bar-e-restaurante"
+                          title="bares-e-restaurantes"
                         />
                       </Col>
                     ))}

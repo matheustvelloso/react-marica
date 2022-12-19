@@ -30,20 +30,20 @@ const Routes: React.FC = () => {
       <Switch>
         <Route path="/" element={<Home />} />
         <Route path="/pontos-turisticos" element={<PontosTurísticos />} />
-        <Route path="/ponto-turistico/:id" element={<PontoTurístico />} />
+        <Route path="/pontos-turisticos/:id" element={<PontoTurístico />} />
         <Route path="/hoteis-e-pousadas" element={<HotéisEPousadas />} />
-        <Route path="/hotel-e-pousada/:id" element={<HotelEPousada />} />
+        <Route path="/hoteis-e-pousadas/:id" element={<HotelEPousada />} />
         <Route path="/bares-e-restaurantes" element={<BaresERestaurantes />} />
-        <Route path="/bar-e-restaurante/:id" element={<BarERestaurante />} />
+        <Route path="/bares-e-restaurantes/:id" element={<BarERestaurante />} />
         <Route path="/comercio-local" element={<ComércioLocal />} />
-        <Route path="/comercio/:id" element={<Comércio />} />
+        <Route path="/comercio-local/:id" element={<Comércio />} />
         <Route path="/espacos-para-eventos" element={<EspaçosParaEventos />} />
         <Route
-          path="/espaco-para-eventos/:id"
+          path="/espacos-para-eventos/:id"
           element={<EspaçoParaEventos />}
         />
         <Route path="/eventos" element={<Eventos />} />
-        <Route path="/evento/:id" element={<Evento />} />
+        <Route path="/eventos/:id" element={<Evento />} />
         <Route path="/sobre-a-cidade" element={<SobreACidade />} />
         <Route
           path="/mapa/pontos-turisticos"

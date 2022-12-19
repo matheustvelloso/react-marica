@@ -67,7 +67,7 @@ const PontosTurísticos: React.FC = () => {
                         <PagesCard
                           apiContent={point}
                           fetchCategory={fetchCategory}
-                          title="ponto-turistico"
+                          title="pontos-turisticos"
                         />
                       </Col>
                     ))}
