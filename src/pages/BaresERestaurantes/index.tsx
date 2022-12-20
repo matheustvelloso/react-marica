@@ -88,7 +88,6 @@ const BaresERestaurantes: React.FC = () => {
           </div>
         )}
       </main>
-
       <Footer />
     </Wrapper>
   )

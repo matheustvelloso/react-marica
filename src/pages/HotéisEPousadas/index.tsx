@@ -52,7 +52,7 @@ const HotéisEPousadas: React.FC = () => {
         show={show}
       />
 
-      <main>
+      <main className="flex-1">
         {loading && <PagesCardLoader />}
         {!loading && (
           <div>
