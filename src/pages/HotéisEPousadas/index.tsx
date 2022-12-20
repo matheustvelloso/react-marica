@@ -70,6 +70,7 @@ const HotéisEPousadas: React.FC = () => {
                         apiContent={_motelAndInn}
                         fetchCategory={fetchCategory}
                         title="hoteis-e-pousadas"
+                        setCategoryValue={setCategoryValue}
                       />
                     </Col>
                   ))}

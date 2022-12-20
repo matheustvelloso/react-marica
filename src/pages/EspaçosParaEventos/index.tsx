@@ -70,6 +70,7 @@ const EspaçosParaEventos: React.FC = () => {
                         apiContent={place}
                         fetchCategory={fetchCategory}
                         title="espacos-para-eventos"
+                        setCategoryValue={setCategoryValue}
                       />
                     </Col>
                   ))}

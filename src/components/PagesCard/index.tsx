@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { Dispatch, memo, SetStateAction, useCallback } from 'react'
 
 import { getDate, getMonth, format } from 'date-fns'
 
@@ -20,6 +20,7 @@ interface IPagesCardProps {
   fetchCategory?: (id: number) => void
   title: string
   startDate?: string
+  setCategoryValue: Dispatch<SetStateAction<string>>
 }
 
 const PagesCard: React.FC<IPagesCardProps> = ({
@@ -27,6 +28,7 @@ const PagesCard: React.FC<IPagesCardProps> = ({
   fetchCategory,
   title,
   startDate,
+  setCategoryValue,
 }) => {
   const getMonthAbbreviation = (date: string | number): string => {
     switch (getMonth(new Date(date))) {
@@ -60,6 +62,14 @@ const PagesCard: React.FC<IPagesCardProps> = ({
   const formatStartDate = (): string | number =>
     startDate ? format(new Date(startDate), 'yyyy-MM-dd HH:mm:mm:mm') : ''
 
+  const handleCategoryButton = useCallback(
+    (categoryId: number, categoryValue: string) => {
+      if (fetchCategory) fetchCategory(categoryId)
+      if (setCategoryValue) setCategoryValue(categoryValue)
+    },
+    [fetchCategory, setCategoryValue],
+  )
+
   return (
     <CardContainer>
       <ImageLink to={`/${title}/${apiContent.id}`}>
@@ -89,7 +99,9 @@ const PagesCard: React.FC<IPagesCardProps> = ({
                   <ButtonCategory
                     key={category.id}
                     type="button"
-                    onClick={() => fetchCategory(category.id)}
+                    onClick={() =>
+                      handleCategoryButton(category.id, category.label)
+                    }
                   >
                     {category.label}
                   </ButtonCategory>

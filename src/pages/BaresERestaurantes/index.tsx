@@ -72,6 +72,7 @@ const BaresERestaurantes: React.FC = () => {
                         apiContent={barAndRestaurant}
                         fetchCategory={fetchCategory}
                         title="bares-e-restaurantes"
+                        setCategoryValue={setCategoryValue}
                       />
                     </Col>
                   ))}

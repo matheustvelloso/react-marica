@@ -32,7 +32,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       setCategory(categorias)
       setPoints(collection)
     } catch (e) {
-      // eslint-disable-next-line no-console
+      // eslint-disable-next-line prettier/prettier, no-console
       console.error(e)
     } finally {
       setLoading(false)
@@ -52,7 +52,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       setPoints(collection)
       setCategory(categorias)
     } catch (e) {
-      // eslint-disable-next-line no-console
+      // eslint-disable-next-line prettier/prettier, no-console
       console.error(e)
     } finally {
       setLoading(false)
@@ -67,7 +67,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       } = await MaricaApi.get(`/pontos/${pointId}`)
       setPoint(item)
     } catch (e) {
-      // eslint-disable-next-line no-console
+      // eslint-disable-next-line prettier/prettier, no-console
       console.error(e)
     } finally {
       setLoading(false)
@@ -83,7 +83,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       setPoints(collection)
       setCategory(categorias)
     } catch (e) {
-      // eslint-disable-next-line no-console
+      // eslint-disable-next-line prettier/prettier, no-console
       console.error(e)
     } finally {
       setLoading(false)

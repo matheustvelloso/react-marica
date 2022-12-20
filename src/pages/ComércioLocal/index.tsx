@@ -70,6 +70,7 @@ const ComércioLocal: React.FC = () => {
                         apiContent={market}
                         fetchCategory={fetchCategory}
                         title="comercio-local"
+                        setCategoryValue={setCategoryValue}
                       />
                     </Col>
                   ))}

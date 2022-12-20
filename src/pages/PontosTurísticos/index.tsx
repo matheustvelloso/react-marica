@@ -70,6 +70,7 @@ const PontosTurísticos: React.FC = () => {
                         apiContent={point}
                         fetchCategory={fetchCategory}
                         title="pontos-turisticos"
+                        setCategoryValue={setCategoryValue}
                       />
                     </Col>
                   ))}

@@ -71,6 +71,7 @@ const Eventos: React.FC = () => {
                         fetchCategory={fetchCategory}
                         startDate={event?.datahora_inicio}
                         title="eventos"
+                        setCategoryValue={setCategoryValue}
                       />
                     </Col>
                   ))}

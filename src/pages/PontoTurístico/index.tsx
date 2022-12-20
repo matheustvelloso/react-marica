@@ -3,7 +3,6 @@ import { memo, useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsGlobe2, BsWhatsapp } from 'react-icons/bs'
 import { FaFacebook, FaInstagram, FaRegMoneyBillAlt } from 'react-icons/fa'
@@ -40,27 +39,20 @@ import {
 
 const PontoTurístico: React.FC = () => {
   const { fetchCategory, fetchPoint, point, loading } = usePontosTuristicos()
-  const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
   const { id } = useParams()
 
   useEffect(() => {
     if (id) fetchPoint(id)
+    if (point?.nome) setTitle(`${point.nome} | Pontos Turísticos`)
+  }, [fetchPoint, id, point?.nome, setTitle])
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id])
-
-  useEffect(() => {
-    if (point?.nome) setTitle(t(`${point.nome} | Pontos Turísticos`))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [i18n.resolvedLanguage, point?.nome])
   return (
     <Wrapper>
       <Header />
-
+      {loading && <PageCardLoader />}
       <main className="flex-1">
-        {loading && <PageCardLoader />}
         {!loading && (
           <>
             <CarouselMultipleItems>
