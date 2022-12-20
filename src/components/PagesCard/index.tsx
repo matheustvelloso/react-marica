@@ -20,7 +20,7 @@ interface IPagesCardProps {
   fetchCategory?: (id: number) => void
   title: string
   startDate?: string
-  setCategoryValue: Dispatch<SetStateAction<string>>
+  setCategoryValue?: Dispatch<SetStateAction<string>>
 }
 
 const PagesCard: React.FC<IPagesCardProps> = ({
