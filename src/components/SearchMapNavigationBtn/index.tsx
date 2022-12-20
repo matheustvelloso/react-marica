@@ -47,8 +47,7 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
     setShow(true)
     setCategoryValue('')
     setPageTitle('Resultados da busca')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, value])
+  }, [search, setCategoryValue, setShow, value])
 
   const handleNavigationButton = useCallback(() => {
     fetch()
@@ -56,16 +55,14 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
     setShow(false)
     setPageTitle(title)
     setValue('')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fetch, setCategoryValue, setShow, setValue, title])
 
   const clearSearchButton = useCallback(() => {
     fetch()
     setValue('')
     setPageTitle(title)
     setShow(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fetch, setShow, setValue, title])
 
   return (
     <Container
