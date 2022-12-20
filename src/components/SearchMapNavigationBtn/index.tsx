@@ -24,6 +24,8 @@ interface ISearchAndHomeBtn {
   setValue: Dispatch<SetStateAction<string>>
   categoryValue: string
   setCategoryValue: Dispatch<SetStateAction<string>>
+  setShow: Dispatch<SetStateAction<boolean>>
+  show: boolean
 }
 
 const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
@@ -35,8 +37,9 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
   setValue,
   categoryValue,
   setCategoryValue,
+  show,
+  setShow,
 }) => {
-  const [show, setShow] = useState(false)
   const [pageTitle, setPageTitle] = useState(title)
 
   const handleSearchButton = useCallback(() => {
@@ -79,7 +82,7 @@ const SearchMapNavigationBtn: React.FC<ISearchAndHomeBtn> = ({
             <IoMdArrowBack className="me-2" />
           </ButtonFetch>
         )}
-        <div>
+        <div className="ms-2">
           {categoryValue ||
             (show === true && <span className="fs-sm fw-light">{title}</span>)}
           <PageTitle>{pageTitle}</PageTitle>

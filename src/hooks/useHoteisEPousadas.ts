@@ -25,8 +25,8 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
     useState<SimpleMotelAndInn>()
 
   const fetchMotelAndInn = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/hoteis-e-pousadas')
@@ -41,8 +41,8 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
   }, [])
 
   const searchMotelAndInn = useCallback(async (busca: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/hoteis-e-pousadas/busca', {
@@ -61,8 +61,8 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
   }, [])
 
   const fetchSimpleMotelAndInn = useCallback(async (pointId: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { item },
       } = await MaricaApi.get(`/hoteis-e-pousadas/${pointId}`)
@@ -76,8 +76,8 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
   }, [])
 
   const fetchCategory = useCallback(async (id: number) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get(`/hoteis-e-pousadas/categorias/${id}`)

@@ -26,8 +26,8 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
     useState<SimpleBarAndRestaurant>()
 
   const fetchBarsAndRestaurants = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/restaurantes')
@@ -42,8 +42,8 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
   }, [])
 
   const searchBarsAndRestaurants = useCallback(async (busca: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/restaurantes/busca', {
@@ -62,8 +62,8 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
   }, [])
 
   const fetchBarAndRestaurant = useCallback(async (pointId: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { item },
       } = await MaricaApi.get(`/restaurantes/${pointId}`)
@@ -77,8 +77,8 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
   }, [])
 
   const fetchCategory = useCallback(async (id: number) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get(`/restaurantes/categorias/${id}`)

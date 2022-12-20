@@ -8,15 +8,18 @@ import { ButtonContainer } from './styles'
 interface ISearchNotFoundProps {
   fetch: () => Promise<void>
   setValue: Dispatch<SetStateAction<string>>
+  setShow: Dispatch<SetStateAction<boolean>>
 }
 
 const SearchNotFound: React.FC<ISearchNotFoundProps> = ({
   fetch,
   setValue,
+  setShow,
 }) => {
   const clearSearchButton = useCallback(() => {
     fetch()
     setValue('')
+    setShow(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

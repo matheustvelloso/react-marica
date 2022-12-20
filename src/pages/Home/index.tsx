@@ -18,6 +18,7 @@ import BannerMain from 'components/BannerMain'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import NavigationCard from 'components/NavigationCard'
+import Wrapper from 'components/Wrapper'
 
 import useTitle from 'hooks/useTitle'
 
@@ -31,10 +32,10 @@ const Home: React.FC = () => {
   }, [i18n.resolvedLanguage])
 
   return (
-    <>
+    <Wrapper>
       <Header />
       <BannerHeader />
-      <main>
+      <main className="flex-1">
         <Container className="py-5">
           <Row className="d-flex justify-content-center row-cols-2 row-cols-md-3">
             <Col className="d-flex px-1 mb-2">
@@ -123,7 +124,7 @@ const Home: React.FC = () => {
         <BannerMain />
       </main>
       <Footer />
-    </>
+    </Wrapper>
   )
 }
 

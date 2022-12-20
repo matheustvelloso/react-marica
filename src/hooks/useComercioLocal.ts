@@ -24,8 +24,8 @@ const useComercioLocal: ComercioLocalType = () => {
   const [market, setMarket] = useState<SimpleMarket>()
 
   const fetchMarkets = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/comercios')
@@ -40,8 +40,8 @@ const useComercioLocal: ComercioLocalType = () => {
   }, [])
 
   const searchMarkets = useCallback(async (busca: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/comercios/busca', {
@@ -60,8 +60,8 @@ const useComercioLocal: ComercioLocalType = () => {
   }, [])
 
   const fetchMarket = useCallback(async (pointId: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { item },
       } = await MaricaApi.get(`/comercios/${pointId}`)
@@ -75,8 +75,8 @@ const useComercioLocal: ComercioLocalType = () => {
   }, [])
 
   const fetchCategory = useCallback(async (id: number) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get(`/comercios/categorias/${id}`)

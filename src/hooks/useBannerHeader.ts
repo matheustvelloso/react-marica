@@ -14,8 +14,8 @@ const useBannerHeader: BannerHeaderType = () => {
   const [loading, setLoading] = useState(false)
 
   const fetchBanners = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const { data } = await MaricaApi.get('/banners')
       setBanners(data)
     } catch (e) {

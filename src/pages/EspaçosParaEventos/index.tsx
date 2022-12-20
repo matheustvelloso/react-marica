@@ -29,6 +29,7 @@ const EspaçosParaEventos: React.FC = () => {
   const setTitle = useTitle()
   const [value, setValue] = useState('')
   const [categoryValue, setCategoryValue] = useState('')
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     setTitle(t('Espaços para Eventos'))
@@ -36,7 +37,7 @@ const EspaçosParaEventos: React.FC = () => {
   }, [i18n.resolvedLanguage])
 
   return (
-    <>
+    <Wrapper>
       <Header />
       <SearchMapNavigationBtn
         title="Espaços para Eventos"
@@ -47,42 +48,46 @@ const EspaçosParaEventos: React.FC = () => {
         setValue={setValue}
         categoryValue={categoryValue}
         setCategoryValue={setCategoryValue}
+        setShow={setShow}
+        show={show}
       />
 
-      <Wrapper>
-        <main>
-          {loading && <PagesCardLoader />}
-          {!loading && (
-            <div>
-              {eventsPlaces?.length !== 0 ? (
-                <Container>
-                  <Categories
-                    categories={category}
-                    fetchCategory={fetchCategory}
-                    setCategoryValue={setCategoryValue}
-                  />
-                  <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
-                    {eventsPlaces?.map((place) => (
-                      <Col key={place.id} className="d-flex mb-3 mb-md-5">
-                        <PagesCard
-                          apiContent={place}
-                          fetchCategory={fetchCategory}
-                          title="espacos-para-eventos"
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                </Container>
-              ) : (
-                <SearchNotFound fetch={fetchEventsPlaces} setValue={setValue} />
-              )}
-            </div>
-          )}
-        </main>
-      </Wrapper>
+      <main className="flex-1">
+        {loading && <PagesCardLoader />}
+        {!loading && (
+          <div>
+            {eventsPlaces?.length !== 0 ? (
+              <Container>
+                <Categories
+                  categories={category}
+                  fetchCategory={fetchCategory}
+                  setCategoryValue={setCategoryValue}
+                />
+                <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                  {eventsPlaces?.map((place) => (
+                    <Col key={place.id} className="d-flex mb-3 mb-md-5">
+                      <PagesCard
+                        apiContent={place}
+                        fetchCategory={fetchCategory}
+                        title="espacos-para-eventos"
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </Container>
+            ) : (
+              <SearchNotFound
+                fetch={fetchEventsPlaces}
+                setValue={setValue}
+                setShow={setShow}
+              />
+            )}
+          </div>
+        )}
+      </main>
 
       <Footer />
-    </>
+    </Wrapper>
   )
 }
 

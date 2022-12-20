@@ -24,8 +24,8 @@ const useEventos: EventosType = () => {
   const [event, setEvent] = useState<SimpleEvent>()
 
   const fetchEvents = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/eventos', {
@@ -46,8 +46,8 @@ const useEventos: EventosType = () => {
   }, [])
 
   const searchEvents = useCallback(async (busca: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/eventos/busca', {
@@ -69,8 +69,8 @@ const useEventos: EventosType = () => {
   }, [])
 
   const fetchEvent = useCallback(async (pointId: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { item },
       } = await MaricaApi.get(`/eventos/${pointId}`)
@@ -84,8 +84,8 @@ const useEventos: EventosType = () => {
   }, [])
 
   const fetchCategory = useCallback(async (id: number) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get(`/eventos/categorias/${id}`)

@@ -40,8 +40,8 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   }, [])
 
   const searchEventsPlaces = useCallback(async (busca: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/espacos/busca', {

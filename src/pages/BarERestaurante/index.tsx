@@ -71,364 +71,357 @@ const BarERestaurante: React.FC = () => {
   }
 
   return (
-    <>
+    <Wrapper>
       <Header />
 
-      <Wrapper>
-        <main>
-          {loading && <PageCardLoader />}
-          {!loading && (
-            <>
-              <CarouselMultipleItems>
-                {barAndRestaurant?.images.map((image) => (
-                  <ImageCarouselBackground key={image.id} image={image.src} />
-                ))}
-              </CarouselMultipleItems>
-              <Container>
-                <div className="d-flex flex-column flex-lg-row mt-5">
-                  <div className="me-3">
-                    <div className="d-flex align-items-center mb-4">
-                      <LinkBackToPoints to="/bares-e-restaurantes">
-                        <IoMdArrowBack className="me-2" />
-                      </LinkBackToPoints>
-                      <div>
-                        <span className="fs-sm fw-light">
-                          Bares e Restaurantes
-                        </span>
-                        <PageTitle>{barAndRestaurant?.nome}</PageTitle>
-                      </div>
+      <main className="flex-1">
+        {loading && <PageCardLoader />}
+        {!loading && (
+          <>
+            <CarouselMultipleItems>
+              {barAndRestaurant?.images.map((image) => (
+                <ImageCarouselBackground key={image.id} image={image.src} />
+              ))}
+            </CarouselMultipleItems>
+            <Container>
+              <div className="d-flex flex-column flex-lg-row mt-5">
+                <div className="me-3">
+                  <div className="d-flex align-items-center mb-4">
+                    <LinkBackToPoints to="/bares-e-restaurantes">
+                      <IoMdArrowBack className="me-2" />
+                    </LinkBackToPoints>
+                    <div>
+                      <span className="fs-sm fw-light">
+                        Bares e Restaurantes
+                      </span>
+                      <PageTitle>{barAndRestaurant?.nome}</PageTitle>
                     </div>
-                    <div className="fs-md mb-5">
-                      <div>
-                        <Categories
-                          categories={barAndRestaurant?.categorias}
-                          fetchCategory={fetchCategory}
-                        />
-                      </div>
-                      <div className="fs-md">
-                        {barAndRestaurant?.descricao_t}
-                      </div>
+                  </div>
+                  <div className="fs-md mb-5">
+                    <div>
+                      <Categories
+                        categories={barAndRestaurant?.categorias}
+                        fetchCategory={fetchCategory}
+                      />
                     </div>
-                    <div className="mb-4 mb-md-5">
-                      <PageSubTitle>Sobre</PageSubTitle>
-                      <div className="d-flex fs-md mb-3">
-                        {barAndRestaurant?.addresses.map((address) => (
-                          <div
-                            className="d-flex align-items-center"
-                            key={address.id}
-                          >
+                    <div className="fs-md">{barAndRestaurant?.descricao_t}</div>
+                  </div>
+                  <div className="mb-4 mb-md-5">
+                    <PageSubTitle>Sobre</PageSubTitle>
+                    <div className="d-flex fs-md mb-3">
+                      {barAndRestaurant?.addresses.map((address) => (
+                        <div
+                          className="d-flex align-items-center"
+                          key={address.id}
+                        >
+                          <IconContainer>
+                            <HiOutlineLocationMarker />
+                          </IconContainer>
+                          <div>{address.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="">
+                      {barAndRestaurant?.phones.map((phone) => (
+                        <div
+                          className="d-flex align-items-center mb-3"
+                          key={phone.id}
+                        >
+                          {phone.nome === 'Fixo' || phone.whatsapp === false ? (
                             <IconContainer>
-                              <HiOutlineLocationMarker />
+                              <RiPhoneLine />
                             </IconContainer>
-                            <div>{address.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="">
-                        {barAndRestaurant?.phones.map((phone) => (
-                          <div
-                            className="d-flex align-items-center mb-3"
-                            key={phone.id}
-                          >
-                            {phone.nome === 'Fixo' ||
-                            phone.whatsapp === false ? (
-                              <IconContainer>
-                                <RiPhoneLine />
-                              </IconContainer>
-                            ) : (
-                              <IconContainer>
-                                <BsWhatsapp />
-                              </IconContainer>
-                            )}
+                          ) : (
+                            <IconContainer>
+                              <BsWhatsapp />
+                            </IconContainer>
+                          )}
 
-                            <div className="d-flex flex-column">
-                              <span style={{ fontSize: '18px', color: '#333' }}>
-                                {phone.nome}
-                              </span>
-                              <span>{phone.number}</span>
-                            </div>
+                          <div className="d-flex flex-column">
+                            <span style={{ fontSize: '18px', color: '#333' }}>
+                              {phone.nome}
+                            </span>
+                            <span>{phone.number}</span>
                           </div>
-                        ))}
-                      </div>
-                      <div className="d-flex flex-column fs-md mb-3">
-                        {barAndRestaurant?.email && (
-                          <div className="d-flex align-items-center mb-3 fs-small">
-                            <IconContainer>
-                              <AiOutlineMail />
-                            </IconContainer>
-                            <div>{barAndRestaurant?.email}</div>
-                          </div>
-                        )}
-                        {barAndRestaurant?.site && (
-                          <div className="d-flex align-items-center mb-3 fs-small">
-                            <IconContainer>
-                              <BsGlobe2 />
-                            </IconContainer>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="d-flex flex-column fs-md mb-3">
+                      {barAndRestaurant?.email && (
+                        <div className="d-flex align-items-center mb-3 fs-small">
+                          <IconContainer>
+                            <AiOutlineMail />
+                          </IconContainer>
+                          <div>{barAndRestaurant?.email}</div>
+                        </div>
+                      )}
+                      {barAndRestaurant?.site && (
+                        <div className="d-flex align-items-center mb-3 fs-small">
+                          <IconContainer>
+                            <BsGlobe2 />
+                          </IconContainer>
+                          <a
+                            href={barAndRestaurant.site}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {barAndRestaurant.site}
+                          </a>
+                        </div>
+                      )}
+                      {barAndRestaurant?.redes.map((social) => (
+                        <div
+                          className="d-flex align-items-center mb-3"
+                          key={social.nome}
+                        >
+                          <IconContainer>
+                            {social.icone === 'fab fa-instagram' ? (
+                              <FaInstagram />
+                            ) : (
+                              <FaFacebook />
+                            )}
+                          </IconContainer>
+                          <div>
                             <a
-                              href={barAndRestaurant.site}
+                              href={social.url}
                               target="_blank"
                               rel="noreferrer"
+                              style={{ textDecoration: 'none' }}
                             >
-                              {barAndRestaurant.site}
+                              {social.user}
                             </a>
                           </div>
-                        )}
-                        {barAndRestaurant?.redes.map((social) => (
-                          <div
-                            className="d-flex align-items-center mb-3"
-                            key={social.nome}
-                          >
-                            <IconContainer>
-                              {social.icone === 'fab fa-instagram' ? (
-                                <FaInstagram />
-                              ) : (
-                                <FaFacebook />
-                              )}
-                            </IconContainer>
-                            <div>
-                              <a
-                                href={social.url}
-                                target="_blank"
-                                rel="noreferrer"
-                                style={{ textDecoration: 'none' }}
-                              >
-                                {social.user}
-                              </a>
-                            </div>
-                          </div>
-                        ))}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="d-flex fs-md mb-3">
+                      <IconContainer>
+                        <BsClock />
+                      </IconContainer>
+                      <div className="d-flex gap-5">
+                        <div>
+                          {barAndRestaurant?.horario_funcionamento.map(
+                            (openingHour) => (
+                              <div>
+                                <span style={{ fontWeight: 700 }}>
+                                  {openingHour.label}
+                                </span>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                        <div>
+                          {barAndRestaurant?.horario_funcionamento.map(
+                            (openingHour) => (
+                              <div>
+                                <span>
+                                  {openingHour.horario.abre} às{' '}
+                                  {openingHour.horario.fecha}
+                                </span>
+                              </div>
+                            ),
+                          )}
+                        </div>
                       </div>
-                      <div className="d-flex fs-md mb-3">
+                    </div>
+                  </div>
+                  <div className="mb-4 mb-md-5">
+                    <PageSubTitle>Faixa de Preço</PageSubTitle>
+                    <div className="d-flex flex-column flex-md-row justify-content-between mb-3 fs-md">
+                      <div className="d-flex align-items-center">
                         <IconContainer>
-                          <BsClock />
+                          {barAndRestaurant?.faixa_preco &&
+                            priceRange(barAndRestaurant?.faixa_preco)?.map(
+                              (_priceRange, i) => (
+                                // eslint-disable-next-line react/no-array-index-key
+                                <FiDollarSign key={i} color={_priceRange} />
+                              ),
+                            )}
                         </IconContainer>
-                        <div className="d-flex gap-5">
-                          <div>
-                            {barAndRestaurant?.horario_funcionamento.map(
-                              (openingHour) => (
-                                <div>
-                                  <span style={{ fontWeight: 700 }}>
-                                    {openingHour.label}
-                                  </span>
-                                </div>
-                              ),
-                            )}
-                          </div>
-                          <div>
-                            {barAndRestaurant?.horario_funcionamento.map(
-                              (openingHour) => (
-                                <div>
-                                  <span>
-                                    {openingHour.horario.abre} às{' '}
-                                    {openingHour.horario.fecha}
-                                  </span>
-                                </div>
-                              ),
-                            )}
-                          </div>
-                        </div>
                       </div>
                     </div>
-                    <div className="mb-4 mb-md-5">
-                      <PageSubTitle>Faixa de Preço</PageSubTitle>
-                      <div className="d-flex flex-column flex-md-row justify-content-between mb-3 fs-md">
-                        <div className="d-flex align-items-center">
+                  </div>
+                  <div className="mb-4 mb-md-5">
+                    <PageSubTitle>Refeições</PageSubTitle>
+                    <div className="d-flex flex-column flex-md-row mb-3 fs-md">
+                      {barAndRestaurant?.refeicoes.map((meal) => (
+                        <div
+                          key={meal.label}
+                          className="d-flex align-items-center pe-3"
+                        >
                           <IconContainer>
-                            {barAndRestaurant?.faixa_preco &&
-                              priceRange(barAndRestaurant?.faixa_preco)?.map(
-                                (_priceRange, i) => (
-                                  // eslint-disable-next-line react/no-array-index-key
-                                  <FiDollarSign key={i} color={_priceRange} />
-                                ),
-                              )}
+                            <GiConfirmed />
                           </IconContainer>
+                          <div>{meal.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {barAndRestaurant?.cozinhas &&
+                    barAndRestaurant.cozinhas.length > 0 && (
+                      <div className="mb-4 mb-md-5">
+                        <PageSubTitle>Cozinhas</PageSubTitle>
+                        <div className="d-flex mb-3">
+                          <Row className="row-cols-1 row-cols-md-3">
+                            {barAndRestaurant.cozinhas.map((kitchen) => (
+                              <Col
+                                key={kitchen.label}
+                                className="d-flex align-items-center fs-md mb-3"
+                              >
+                                <IconContainer>
+                                  <GiConfirmed />
+                                </IconContainer>
+                                <div>{kitchen.label}</div>
+                              </Col>
+                            ))}
+                          </Row>
                         </div>
                       </div>
-                    </div>
-                    <div className="mb-4 mb-md-5">
-                      <PageSubTitle>Refeições</PageSubTitle>
-                      <div className="d-flex flex-column flex-md-row mb-3 fs-md">
-                        {barAndRestaurant?.refeicoes.map((meal) => (
-                          <div
-                            key={meal.label}
-                            className="d-flex align-items-center pe-3"
-                          >
-                            <IconContainer>
-                              <GiConfirmed />
-                            </IconContainer>
-                            <div>{meal.label}</div>
-                          </div>
-                        ))}
+                    )}
+                  {barAndRestaurant?.estruturas &&
+                    barAndRestaurant.estruturas.length > 0 && (
+                      <div className="mb-4 mb-md-5">
+                        <PageSubTitle>Estruturas</PageSubTitle>
+                        <div className="d-flex mb-3">
+                          <Row className="row-cols-1 row-cols-md-3">
+                            {barAndRestaurant.estruturas.map((struct) => (
+                              <Col
+                                key={struct.label}
+                                className="d-flex align-items-center fs-md mb-3"
+                              >
+                                <IconContainer>
+                                  <SVG src={struct.icone} fill="#6ebd00 " />
+                                </IconContainer>
+                                <div>{struct.label}</div>
+                              </Col>
+                            ))}
+                          </Row>
+                        </div>
                       </div>
-                    </div>
-                    {barAndRestaurant?.cozinhas &&
-                      barAndRestaurant.cozinhas.length > 0 && (
-                        <div className="mb-4 mb-md-5">
-                          <PageSubTitle>Cozinhas</PageSubTitle>
-                          <div className="d-flex mb-3">
-                            <Row className="row-cols-1 row-cols-md-3">
-                              {barAndRestaurant.cozinhas.map((kitchen) => (
+                    )}
+                  {barAndRestaurant?.restricoes &&
+                    barAndRestaurant.restricoes.length > 0 && (
+                      <div className="mb-4 mb-md-5">
+                        <PageSubTitle>Restrições</PageSubTitle>
+                        <div className="d-flex mb-3">
+                          <Row className="row-cols-1 row-cols-md-3">
+                            {barAndRestaurant.restricoes &&
+                              barAndRestaurant.restricoes.map((restriction) => (
                                 <Col
-                                  key={kitchen.label}
-                                  className="d-flex align-items-center fs-md mb-3"
+                                  key={restriction.label}
+                                  className="d-flex align-items-center fs-md"
+                                >
+                                  <IconContainer>
+                                    <SVG
+                                      src={restriction.icone}
+                                      fill="#6ebd00 "
+                                    />
+                                  </IconContainer>
+                                  <div>{restriction.label}</div>
+                                </Col>
+                              ))}
+                          </Row>
+                        </div>
+                      </div>
+                    )}
+                  {barAndRestaurant?.formas_pagamento &&
+                    barAndRestaurant.formas_pagamento.length > 0 && (
+                      <div className="mb-4 mb-md-5">
+                        <PageSubTitle>Formas de Pagamento</PageSubTitle>
+                        <div className="d-flex mb-3">
+                          <Row className="row-cols-1 row-cols-md-3">
+                            {barAndRestaurant.formas_pagamento.map(
+                              (paymentMethod) => (
+                                <Col
+                                  key={paymentMethod.label}
+                                  className="d-flex align-items-center fs-md"
                                 >
                                   <IconContainer>
                                     <GiConfirmed />
                                   </IconContainer>
-                                  <div>{kitchen.label}</div>
+                                  <div>{paymentMethod.label}</div>
                                 </Col>
-                              ))}
-                            </Row>
-                          </div>
-                        </div>
-                      )}
-                    {barAndRestaurant?.estruturas &&
-                      barAndRestaurant.estruturas.length > 0 && (
-                        <div className="mb-4 mb-md-5">
-                          <PageSubTitle>Estruturas</PageSubTitle>
-                          <div className="d-flex mb-3">
-                            <Row className="row-cols-1 row-cols-md-3">
-                              {barAndRestaurant.estruturas.map((struct) => (
-                                <Col
-                                  key={struct.label}
-                                  className="d-flex align-items-center fs-md mb-3"
-                                >
-                                  <IconContainer>
-                                    <SVG src={struct.icone} fill="#6ebd00 " />
-                                  </IconContainer>
-                                  <div>{struct.label}</div>
-                                </Col>
-                              ))}
-                            </Row>
-                          </div>
-                        </div>
-                      )}
-                    {barAndRestaurant?.restricoes &&
-                      barAndRestaurant.restricoes.length > 0 && (
-                        <div className="mb-4 mb-md-5">
-                          <PageSubTitle>Restrições</PageSubTitle>
-                          <div className="d-flex mb-3">
-                            <Row className="row-cols-1 row-cols-md-3">
-                              {barAndRestaurant.restricoes &&
-                                barAndRestaurant.restricoes.map(
-                                  (restriction) => (
-                                    <Col
-                                      key={restriction.label}
-                                      className="d-flex align-items-center fs-md"
-                                    >
-                                      <IconContainer>
-                                        <SVG
-                                          src={restriction.icone}
-                                          fill="#6ebd00 "
-                                        />
-                                      </IconContainer>
-                                      <div>{restriction.label}</div>
-                                    </Col>
-                                  ),
-                                )}
-                            </Row>
-                          </div>
-                        </div>
-                      )}
-                    {barAndRestaurant?.formas_pagamento &&
-                      barAndRestaurant.formas_pagamento.length > 0 && (
-                        <div className="mb-4 mb-md-5">
-                          <PageSubTitle>Formas de Pagamento</PageSubTitle>
-                          <div className="d-flex mb-3">
-                            <Row className="row-cols-1 row-cols-md-3">
-                              {barAndRestaurant.formas_pagamento.map(
-                                (paymentMethod) => (
-                                  <Col
-                                    key={paymentMethod.label}
-                                    className="d-flex align-items-center fs-md"
-                                  >
-                                    <IconContainer>
-                                      <GiConfirmed />
-                                    </IconContainer>
-                                    <div>{paymentMethod.label}</div>
-                                  </Col>
-                                ),
-                              )}
-                            </Row>
-                          </div>
-                        </div>
-                      )}
-                  </div>
-                  <div className="mb-5 ms-lg-5">
-                    <div className="mb-4">
-                      <h2 className="fs-md fw-bold d-none d-lg-block mb-3">
-                        Localização
-                      </h2>
-                      {barAndRestaurant?.addresses?.length && (
-                        <div className="w-lg-100" style={{ height: '300px' }}>
-                          <GoogleMapReact
-                            bootstrapURLKeys={{ key: `${Config.api.key}` }}
-                            defaultCenter={{
-                              lat:
-                                barAndRestaurant.addresses.reduce(
-                                  (prev, { lat }) => prev + lat,
-                                  0,
-                                ) / barAndRestaurant.addresses.length,
-                              lng:
-                                barAndRestaurant.addresses.reduce(
-                                  (prev, { lng }) => prev + lng,
-                                  0,
-                                ) / barAndRestaurant.addresses.length,
-                            }}
-                            defaultZoom={15}
-                          >
-                            {barAndRestaurant?.addresses?.map(
-                              ({ id: addrId, lat, lng }) => (
-                                <MapMarker key={addrId} lat={lat} lng={lng} />
                               ),
                             )}
-                          </GoogleMapReact>
+                          </Row>
                         </div>
-                      )}
-                    </div>
-                    <div>
-                      <h2 className="fs-md mb-3">Conheça nosso app</h2>
-                      <div className="d-flex mt-auto text-center text-md-left gap-3">
-                        <div>
-                          <a
-                            href="https://play.google.com/store/apps/details?id=com.marica2030.app"
-                            title="Google Play"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <img
-                              className="img-fluid"
-                              src={googlePlay}
-                              alt="Google Play"
-                            />
-                          </a>
-                        </div>
-                        <div>
-                          <a
-                            href="https://apps.apple.com/br/app/maric%C3%A1-oficial/id1493299199"
-                            title="App Store"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <img
-                              className="img-fluid"
-                              src={appStore}
-                              alt="App Store"
-                            />
-                          </a>
-                        </div>
+                      </div>
+                    )}
+                </div>
+                <div className="mb-5 ms-lg-5">
+                  <div className="mb-4">
+                    <h2 className="fs-md fw-bold d-none d-lg-block mb-3">
+                      Localização
+                    </h2>
+                    {barAndRestaurant?.addresses?.length && (
+                      <div className="w-lg-100" style={{ height: '300px' }}>
+                        <GoogleMapReact
+                          bootstrapURLKeys={{ key: `${Config.api.key}` }}
+                          defaultCenter={{
+                            lat:
+                              barAndRestaurant.addresses.reduce(
+                                (prev, { lat }) => prev + lat,
+                                0,
+                              ) / barAndRestaurant.addresses.length,
+                            lng:
+                              barAndRestaurant.addresses.reduce(
+                                (prev, { lng }) => prev + lng,
+                                0,
+                              ) / barAndRestaurant.addresses.length,
+                          }}
+                          defaultZoom={15}
+                        >
+                          {barAndRestaurant?.addresses?.map(
+                            ({ id: addrId, lat, lng }) => (
+                              <MapMarker key={addrId} lat={lat} lng={lng} />
+                            ),
+                          )}
+                        </GoogleMapReact>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <h2 className="fs-md mb-3">Conheça nosso app</h2>
+                    <div className="d-flex mt-auto text-center text-md-left gap-3">
+                      <div>
+                        <a
+                          href="https://play.google.com/store/apps/details?id=com.marica2030.app"
+                          title="Google Play"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <img
+                            className="img-fluid"
+                            src={googlePlay}
+                            alt="Google Play"
+                          />
+                        </a>
+                      </div>
+                      <div>
+                        <a
+                          href="https://apps.apple.com/br/app/maric%C3%A1-oficial/id1493299199"
+                          title="App Store"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <img
+                            className="img-fluid"
+                            src={appStore}
+                            alt="App Store"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
                 </div>
-              </Container>
-            </>
-          )}
-        </main>
-      </Wrapper>
+              </div>
+            </Container>
+          </>
+        )}
+      </main>
 
       <Footer />
-    </>
+    </Wrapper>
   )
 }
 

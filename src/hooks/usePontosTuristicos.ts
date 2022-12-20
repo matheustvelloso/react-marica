@@ -24,8 +24,8 @@ const usePontosTuristicos: PontosTuristicosType = () => {
   const [point, setPoint] = useState<SimplePoint>()
 
   const fetchPoints = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/pontos')
@@ -40,8 +40,8 @@ const usePontosTuristicos: PontosTuristicosType = () => {
   }, [])
 
   const searchPoints = useCallback(async (busca: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/pontos/busca', {
@@ -60,8 +60,8 @@ const usePontosTuristicos: PontosTuristicosType = () => {
   }, [])
 
   const fetchPoint = useCallback(async (pointId: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { item },
       } = await MaricaApi.get(`/pontos/${pointId}`)
@@ -75,8 +75,8 @@ const usePontosTuristicos: PontosTuristicosType = () => {
   }, [])
 
   const fetchCategory = useCallback(async (id: number) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get(`/pontos/categorias/${id}`)

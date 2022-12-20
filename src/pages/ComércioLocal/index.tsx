@@ -29,6 +29,7 @@ const ComércioLocal: React.FC = () => {
   const setTitle = useTitle()
   const [value, setValue] = useState('')
   const [categoryValue, setCategoryValue] = useState('')
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     setTitle(t('Comércio Local'))
@@ -36,7 +37,7 @@ const ComércioLocal: React.FC = () => {
   }, [i18n.resolvedLanguage])
 
   return (
-    <>
+    <Wrapper>
       <Header />
       <SearchMapNavigationBtn
         title="Comércio local"
@@ -47,42 +48,45 @@ const ComércioLocal: React.FC = () => {
         setValue={setValue}
         categoryValue={categoryValue}
         setCategoryValue={setCategoryValue}
+        setShow={setShow}
+        show={show}
       />
 
-      <Wrapper>
-        <main>
-          {loading && <PagesCardLoader />}
-          {!loading && (
-            <div>
-              {markets?.length !== 0 ? (
-                <Container>
-                  <Categories
-                    categories={category}
-                    fetchCategory={fetchCategory}
-                    setCategoryValue={setCategoryValue}
-                  />
-                  <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
-                    {markets?.map((market) => (
-                      <Col key={market.id} className="d-flex mb-3 mb-md-5">
-                        <PagesCard
-                          apiContent={market}
-                          fetchCategory={fetchCategory}
-                          title="comercio-local"
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                </Container>
-              ) : (
-                <SearchNotFound fetch={fetchMarkets} setValue={setValue} />
-              )}
-            </div>
-          )}
-        </main>
-      </Wrapper>
-
+      <main className="flex-1">
+        {loading && <PagesCardLoader />}
+        {!loading && (
+          <div>
+            {markets?.length !== 0 ? (
+              <Container>
+                <Categories
+                  categories={category}
+                  fetchCategory={fetchCategory}
+                  setCategoryValue={setCategoryValue}
+                />
+                <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+                  {markets?.map((market) => (
+                    <Col key={market.id} className="d-flex mb-3 mb-md-5">
+                      <PagesCard
+                        apiContent={market}
+                        fetchCategory={fetchCategory}
+                        title="comercio-local"
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </Container>
+            ) : (
+              <SearchNotFound
+                fetch={fetchMarkets}
+                setValue={setValue}
+                setShow={setShow}
+              />
+            )}
+          </div>
+        )}
+      </main>
       <Footer />
-    </>
+    </Wrapper>
   )
 }
 
