@@ -53,6 +53,15 @@ export const IconLink = styled(Link)`
     color: #333;
   }
 `
+export const IconExternalLink = styled.a`
+  font-size: 48px;
+  text-decoration: none;
+  color: #333;
+
+  &:hover {
+    color: #333;
+  }
+`
 
 export const TitleLink = styled(Link)`
   font-size: 16px;

@@ -81,7 +81,7 @@ const EpaçoParaEventos: React.FC = () => {
                       </LinkBackToPoints>
                       <div>
                         <span className="fs-sm fw-light">
-                          Espaço para Eventos
+                          Espaços para Eventos
                         </span>
                         <PageTitle>{eventPlace?.nome}</PageTitle>
                       </div>

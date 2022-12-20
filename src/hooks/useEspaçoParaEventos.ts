@@ -24,8 +24,8 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   const [eventPlace, setEventPlace] = useState<SimpleEventPlace>()
 
   const fetchEventsPlaces = useCallback(async () => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get('/espacos')
@@ -60,8 +60,8 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   }, [])
 
   const fetchEventPlace = useCallback(async (pointId: string) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { item },
       } = await MaricaApi.get(`/espacos/${pointId}`)
@@ -75,8 +75,8 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   }, [])
 
   const fetchCategory = useCallback(async (id: number) => {
+    setLoading(true)
     try {
-      setLoading(true)
       const {
         data: { categorias, collection },
       } = await MaricaApi.get(`/espacos/categorias/${id}`)

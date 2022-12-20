@@ -152,20 +152,6 @@ const PontoTurístico: React.FC = () => {
                             </a>
                           </div>
                         )}
-                        {point?.site && (
-                          <div className="d-flex align-items-center mb-3">
-                            <IconContainer>
-                              <BsGlobe2 />
-                            </IconContainer>
-                            <a
-                              href={point.site}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {point.site}
-                            </a>
-                          </div>
-                        )}
                         {point?.redes.map((social) => (
                           <div
                             className="d-flex align-items-center"
