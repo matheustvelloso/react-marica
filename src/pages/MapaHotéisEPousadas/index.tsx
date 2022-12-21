@@ -11,13 +11,14 @@ import useTitle from 'hooks/useTitle'
 
 import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
 
-const MapaHotéisEPousadas: React.FC = () => {
-  const { motelAndInn, fetchCategory } = useHoteisEPousadas()
+const MapaPontosTurísticos: React.FC = () => {
+  const { fetchCategory, motelAndInn } = useHoteisEPousadas()
+
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
   useEffect(() => {
-    setTitle(t('Mapa | Hotéis e Pousadas'))
+    setTitle(t('Mapa | Pontos Turísticos'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [i18n.resolvedLanguage])
   return (
@@ -28,16 +29,16 @@ const MapaHotéisEPousadas: React.FC = () => {
           <LinkBackToHome to="/hoteis-e-pousadas">
             <IoMdArrowBack className="me-2" />
           </LinkBackToHome>
-          <PageTitle>Hotéis e Pousadas</PageTitle>
+          <PageTitle>Pontos Turísticos</PageTitle>
         </ButtonContainer>
         <Map
           endPoint={motelAndInn}
-          title="/hoteis-e-pousadas"
           fetchCategory={fetchCategory}
+          title="hoteis-e-pousadas"
         />
       </main>
     </>
   )
 }
 
-export default memo(MapaHotéisEPousadas)
+export default memo(MapaPontosTurísticos)

@@ -51,8 +51,8 @@ const PontoTurístico: React.FC = () => {
   return (
     <Wrapper>
       <Header />
-      {loading && <PageCardLoader />}
       <main className="flex-1">
+        {loading && <PageCardLoader />}
         {!loading && (
           <>
             <CarouselMultipleItems>
