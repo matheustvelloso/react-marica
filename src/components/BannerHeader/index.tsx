@@ -10,7 +10,7 @@ const BannerHeader: React.FC = () => {
   const { banners, loading } = useBannerHeader()
   return (
     <div style={{ overflow: 'hidden' }}>
-      <Slider>
+      <Slider dots arrows>
         {loading && <BannerLoader />}
         {!loading &&
           banners?.map((image) => (

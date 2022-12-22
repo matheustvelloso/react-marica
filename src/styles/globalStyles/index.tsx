@@ -34,6 +34,9 @@ export default createGlobalStyle`
     background-color: rgba(0,0,0, 0.7);
     width: 60px;
     height: 60px;
+    @media(max-width: 991px){
+        display:none !important;
+    }
 
     &:hover{
         background-color: #000;
@@ -103,5 +106,17 @@ export default createGlobalStyle`
     }
     .flex-1{
         flex: 1;
+    }
+    .slick-dots li.slick-active button:before {
+    font-size: 10px;
+    color: rgb(45, 103, 127);
+    opacity: 1;
+    }
+    .slick-dots {
+        white-space: nowrap;
+    }
+    .slick-dots li {
+        margin: 0;
+
     }
 `

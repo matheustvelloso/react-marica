@@ -13,7 +13,7 @@ const CarouselMultipleItems: React.FC<ICarouselMultipleItemsProps> = ({
   children,
 }) => {
   return (
-    <div style={{ overflow: 'hidden' }}>
+    <div>
       <Slider {...settings}>{children}</Slider>
     </div>
   )
