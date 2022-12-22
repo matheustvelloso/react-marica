@@ -15,12 +15,14 @@ type EventosType = () => {
   fetchCategory: (id: number) => Promise<void>
   fetchEvent: (pointId: string) => Promise<void>
   loading: boolean
+  loadingPage: boolean
 }
 
 const useEventos: EventosType = () => {
   const [events, setEvents] = useState<Event[]>()
   const [category, setCategory] = useState<Category[]>()
   const [loading, setLoading] = useState(false)
+  const [loadingPage, setLoadingPage] = useState(false)
   const [event, setEvent] = useState<SimpleEvent>()
 
   const fetchEvents = useCallback(async () => {
@@ -69,7 +71,7 @@ const useEventos: EventosType = () => {
   }, [])
 
   const fetchEvent = useCallback(async (pointId: string) => {
-    setLoading(true)
+    setLoadingPage(true)
     try {
       const {
         data: { item },
@@ -79,7 +81,7 @@ const useEventos: EventosType = () => {
       // eslint-disable-next-line no-console
       console.error(e)
     } finally {
-      setLoading(false)
+      setLoadingPage(false)
     }
   }, [])
 
@@ -114,6 +116,7 @@ const useEventos: EventosType = () => {
       searchEvents,
       fetchEvent,
       fetchCategory,
+      loadingPage,
     }),
     [
       category,
@@ -124,6 +127,7 @@ const useEventos: EventosType = () => {
       fetchEvents,
       loading,
       searchEvents,
+      loadingPage,
     ],
   )
 }

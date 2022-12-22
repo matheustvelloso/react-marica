@@ -44,8 +44,12 @@ const BarERestaurante: React.FC = () => {
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
-  const { fetchBarAndRestaurant, fetchCategory, barAndRestaurant, loading } =
-    useBaresERestaurantes()
+  const {
+    fetchBarAndRestaurant,
+    fetchCategory,
+    barAndRestaurant,
+    loadingPage,
+  } = useBaresERestaurantes()
 
   useEffect(() => {
     if (id) fetchBarAndRestaurant(id)
@@ -75,8 +79,8 @@ const BarERestaurante: React.FC = () => {
       <Header />
 
       <main className="flex-1">
-        {loading && <PageCardLoader />}
-        {!loading && (
+        {loadingPage && <PageCardLoader />}
+        {!loadingPage && (
           <>
             <CarouselMultipleItems>
               {barAndRestaurant?.images.map((image) => (

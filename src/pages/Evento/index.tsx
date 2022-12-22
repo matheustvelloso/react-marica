@@ -46,7 +46,7 @@ import {
 } from './style'
 
 const PontoTurístico: React.FC = () => {
-  const { fetchCategory, fetchEvent, event, loading } = useEventos()
+  const { fetchCategory, fetchEvent, event, loadingPage } = useEventos()
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
   const { id } = useParams()
@@ -162,8 +162,8 @@ const PontoTurístico: React.FC = () => {
       <Header />
 
       <main className="flex-1">
-        {loading && <PageCardLoader />}
-        {!loading && (
+        {loadingPage && <PageCardLoader />}
+        {!loadingPage && (
           <>
             <CarouselMultipleItems>
               {event?.images.map((image) => (

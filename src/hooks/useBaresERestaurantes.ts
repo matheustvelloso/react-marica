@@ -15,6 +15,7 @@ type BaresERestaurantesType = () => {
   searchBarsAndRestaurants: (busca: string) => Promise<void>
   fetchCategory: (id: number) => Promise<void>
   fetchBarAndRestaurant: (pointId: string) => Promise<void>
+  loadingPage: boolean
 }
 
 const useBaresERestaurantes: BaresERestaurantesType = () => {
@@ -22,6 +23,7 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
     useState<BarAndRestaurant[]>()
   const [category, setCategory] = useState<Category[]>()
   const [loading, setLoading] = useState(false)
+  const [loadingPage, setLoadingPage] = useState(false)
   const [barAndRestaurant, setBarAndRestaurant] =
     useState<SimpleBarAndRestaurant>()
 
@@ -62,7 +64,7 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
   }, [])
 
   const fetchBarAndRestaurant = useCallback(async (pointId: string) => {
-    setLoading(true)
+    setLoadingPage(true)
     try {
       const {
         data: { item },
@@ -72,7 +74,7 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
       // eslint-disable-next-line no-console
       console.error(e)
     } finally {
-      setLoading(false)
+      setLoadingPage(false)
     }
   }, [])
 
@@ -107,6 +109,7 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
       searchBarsAndRestaurants,
       fetchCategory,
       fetchBarAndRestaurant,
+      loadingPage,
     }),
     [
       barAndRestaurant,
@@ -117,6 +120,7 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
       fetchBarsAndRestaurants,
       fetchCategory,
       searchBarsAndRestaurants,
+      loadingPage,
     ],
   )
 }

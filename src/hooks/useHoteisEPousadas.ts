@@ -15,12 +15,14 @@ type HoteisEPousadasType = () => {
   searchMotelAndInn: (busca: string) => Promise<void>
   fetchCategory: (id: number) => Promise<void>
   fetchSimpleMotelAndInn: (pointId: string) => Promise<void>
+  loadingPage: boolean
 }
 
 const useHoteisEPousadas: HoteisEPousadasType = () => {
   const [motelAndInn, setMotelAndInn] = useState<MotelAndInn[]>()
   const [category, setCategory] = useState<Category[]>()
   const [loading, setLoading] = useState(false)
+  const [loadingPage, setLoadingPage] = useState(false)
   const [simpleMotelAndInn, setSimpleMotelAndInn] =
     useState<SimpleMotelAndInn>()
 
@@ -61,7 +63,7 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
   }, [])
 
   const fetchSimpleMotelAndInn = useCallback(async (pointId: string) => {
-    setLoading(true)
+    setLoadingPage(true)
     try {
       const {
         data: { item },
@@ -71,7 +73,7 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
       // eslint-disable-next-line no-console
       console.error(e)
     } finally {
-      setLoading(false)
+      setLoadingPage(false)
     }
   }, [])
 
@@ -106,6 +108,7 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
       motelAndInn,
       category,
       loading,
+      loadingPage,
     }),
     [
       category,
@@ -116,6 +119,7 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
       motelAndInn,
       searchMotelAndInn,
       simpleMotelAndInn,
+      loadingPage,
     ],
   )
 }

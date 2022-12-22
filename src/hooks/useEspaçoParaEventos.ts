@@ -15,6 +15,7 @@ type EspaçoParaEventosType = () => {
   searchEventsPlaces: (busca: string) => Promise<void>
   fetchCategory: (id: number) => Promise<void>
   fetchEventPlace: (pointId: string) => Promise<void>
+  loadingPage: boolean
 }
 
 const useEspaçoParaEventos: EspaçoParaEventosType = () => {
@@ -22,6 +23,7 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   const [category, setCategory] = useState<Category[]>()
   const [loading, setLoading] = useState(false)
   const [eventPlace, setEventPlace] = useState<SimpleEventPlace>()
+  const [loadingPage, setLoadingPage] = useState(false)
 
   const fetchEventsPlaces = useCallback(async () => {
     setLoading(true)
@@ -60,7 +62,7 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   }, [])
 
   const fetchEventPlace = useCallback(async (pointId: string) => {
-    setLoading(true)
+    setLoadingPage(true)
     try {
       const {
         data: { item },
@@ -70,7 +72,7 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
       // eslint-disable-next-line no-console
       console.error(e)
     } finally {
-      setLoading(false)
+      setLoadingPage(false)
     }
   }, [])
 
@@ -105,6 +107,7 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
       searchEventsPlaces,
       fetchCategory,
       fetchEventPlace,
+      loadingPage,
     }),
     [
       loading,
@@ -115,6 +118,7 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
       fetchEventPlace,
       fetchEventsPlaces,
       searchEventsPlaces,
+      loadingPage,
     ],
   )
 }

@@ -44,7 +44,7 @@ const EpaçoParaEventos: React.FC = () => {
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
-  const { fetchEventPlace, fetchCategory, eventPlace, loading } =
+  const { fetchEventPlace, fetchCategory, eventPlace, loadingPage } =
     useEspaçoParaEventos()
 
   useEffect(() => {
@@ -63,8 +63,8 @@ const EpaçoParaEventos: React.FC = () => {
       <Header />
 
       <main className="flex-1">
-        {loading && <PageCardLoader />}
-        {!loading && (
+        {loadingPage && <PageCardLoader />}
+        {!loadingPage && (
           <>
             <CarouselMultipleItems>
               {eventPlace?.images.map((image) => (

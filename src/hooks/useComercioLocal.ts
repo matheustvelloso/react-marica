@@ -15,12 +15,14 @@ type ComercioLocalType = () => {
   searchMarkets: (busca: string) => Promise<void>
   fetchCategory: (id: number) => Promise<void>
   fetchMarket: (pointId: string) => Promise<void>
+  loadingPage: boolean
 }
 
 const useComercioLocal: ComercioLocalType = () => {
   const [markets, setMarkets] = useState<Market[]>()
   const [category, setCategory] = useState<Category[]>()
   const [loading, setLoading] = useState(false)
+  const [loadingPage, setLoadingPage] = useState(false)
   const [market, setMarket] = useState<SimpleMarket>()
 
   const fetchMarkets = useCallback(async () => {
@@ -60,7 +62,7 @@ const useComercioLocal: ComercioLocalType = () => {
   }, [])
 
   const fetchMarket = useCallback(async (pointId: string) => {
-    setLoading(true)
+    setLoadingPage(true)
     try {
       const {
         data: { item },
@@ -70,7 +72,7 @@ const useComercioLocal: ComercioLocalType = () => {
       // eslint-disable-next-line no-console
       console.error(e)
     } finally {
-      setLoading(false)
+      setLoadingPage(false)
     }
   }, [])
 
@@ -105,6 +107,7 @@ const useComercioLocal: ComercioLocalType = () => {
       searchMarkets,
       fetchCategory,
       fetchMarket,
+      loadingPage,
     }),
     [
       category,
@@ -115,6 +118,7 @@ const useComercioLocal: ComercioLocalType = () => {
       market,
       markets,
       searchMarkets,
+      loadingPage,
     ],
   )
 }

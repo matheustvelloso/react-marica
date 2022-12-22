@@ -41,8 +41,12 @@ import {
 
 const HotelEPousada: React.FC = () => {
   const { id } = useParams()
-  const { fetchSimpleMotelAndInn, fetchCategory, simpleMotelAndInn, loading } =
-    useHoteisEPousadas()
+  const {
+    fetchSimpleMotelAndInn,
+    fetchCategory,
+    simpleMotelAndInn,
+    loadingPage,
+  } = useHoteisEPousadas()
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
@@ -61,8 +65,8 @@ const HotelEPousada: React.FC = () => {
       <Header />
 
       <main className="flex-1">
-        {loading && <PageCardLoader />}
-        {!loading && (
+        {loadingPage && <PageCardLoader />}
+        {!loadingPage && (
           <>
             {' '}
             <CarouselMultipleItems>

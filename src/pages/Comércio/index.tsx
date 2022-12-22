@@ -43,7 +43,7 @@ const Comércio: React.FC = () => {
   const { t, i18n } = useTranslation()
   const setTitle = useTitle()
 
-  const { fetchMarket, fetchCategory, market, loading } = useComercioLocal()
+  const { fetchMarket, fetchCategory, market, loadingPage } = useComercioLocal()
 
   useEffect(() => {
     if (id) fetchMarket(id)
@@ -60,8 +60,8 @@ const Comércio: React.FC = () => {
       <Header />
 
       <main className="flex-1">
-        {loading && <PageCardLoader />}
-        {!loading && (
+        {loadingPage && <PageCardLoader />}
+        {!loadingPage && (
           <>
             <CarouselMultipleItems>
               {market?.images.map((image) => (

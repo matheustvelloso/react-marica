@@ -15,12 +15,14 @@ type PontosTuristicosType = () => {
   fetchPoint: (pointId: string) => Promise<void>
   loading: boolean
   point: SimplePoint | undefined
+  loadingPage: boolean
 }
 
 const usePontosTuristicos: PontosTuristicosType = () => {
   const [points, setPoints] = useState<Point[]>()
   const [category, setCategory] = useState<Category[]>()
   const [loading, setLoading] = useState(false)
+  const [loadingPage, setLoadingPage] = useState(false)
   const [point, setPoint] = useState<SimplePoint>()
 
   const fetchPoints = useCallback(async () => {
@@ -60,7 +62,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
   }, [])
 
   const fetchPoint = useCallback(async (pointId: string) => {
-    setLoading(true)
+    setLoadingPage(true)
     try {
       const {
         data: { item },
@@ -70,7 +72,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       // eslint-disable-next-line prettier/prettier, no-console
       console.error(e)
     } finally {
-      setLoading(false)
+      setLoadingPage(false)
     }
   }, [])
 
@@ -105,6 +107,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       points,
       category,
       loading,
+      loadingPage,
     }),
     [
       fetchPoints,
@@ -115,6 +118,7 @@ const usePontosTuristicos: PontosTuristicosType = () => {
       fetchCategory,
       point,
       fetchPoint,
+      loadingPage,
     ],
   )
 }
