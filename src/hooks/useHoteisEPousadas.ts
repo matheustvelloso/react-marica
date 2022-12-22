@@ -26,6 +26,10 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
   const [simpleMotelAndInn, setSimpleMotelAndInn] =
     useState<SimpleMotelAndInn>()
 
+  const setLoadingTimeout = useCallback(() => {
+    setLoadingPage(false)
+  }, [])
+
   const fetchMotelAndInn = useCallback(async () => {
     setLoading(true)
     try {
@@ -62,20 +66,23 @@ const useHoteisEPousadas: HoteisEPousadasType = () => {
     }
   }, [])
 
-  const fetchSimpleMotelAndInn = useCallback(async (pointId: string) => {
-    setLoadingPage(true)
-    try {
-      const {
-        data: { item },
-      } = await MaricaApi.get(`/hoteis-e-pousadas/${pointId}`)
-      setSimpleMotelAndInn(item)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    } finally {
-      setLoadingPage(false)
-    }
-  }, [])
+  const fetchSimpleMotelAndInn = useCallback(
+    async (pointId: string) => {
+      setLoadingPage(true)
+      try {
+        const {
+          data: { item },
+        } = await MaricaApi.get(`/hoteis-e-pousadas/${pointId}`)
+        setSimpleMotelAndInn(item)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      } finally {
+        setTimeout(setLoadingTimeout, 1000)
+      }
+    },
+    [setLoadingTimeout],
+  )
 
   const fetchCategory = useCallback(async (id: number) => {
     setLoading(true)

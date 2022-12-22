@@ -27,6 +27,10 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
   const [barAndRestaurant, setBarAndRestaurant] =
     useState<SimpleBarAndRestaurant>()
 
+  const setLoadingTimeout = useCallback(() => {
+    setLoadingPage(false)
+  }, [])
+
   const fetchBarsAndRestaurants = useCallback(async () => {
     setLoading(true)
     try {
@@ -63,20 +67,23 @@ const useBaresERestaurantes: BaresERestaurantesType = () => {
     }
   }, [])
 
-  const fetchBarAndRestaurant = useCallback(async (pointId: string) => {
-    setLoadingPage(true)
-    try {
-      const {
-        data: { item },
-      } = await MaricaApi.get(`/restaurantes/${pointId}`)
-      setBarAndRestaurant(item)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    } finally {
-      setLoadingPage(false)
-    }
-  }, [])
+  const fetchBarAndRestaurant = useCallback(
+    async (pointId: string) => {
+      setLoadingPage(true)
+      try {
+        const {
+          data: { item },
+        } = await MaricaApi.get(`/restaurantes/${pointId}`)
+        setBarAndRestaurant(item)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      } finally {
+        setTimeout(setLoadingTimeout, 1000)
+      }
+    },
+    [setLoadingTimeout],
+  )
 
   const fetchCategory = useCallback(async (id: number) => {
     setLoading(true)

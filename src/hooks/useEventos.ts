@@ -25,6 +25,10 @@ const useEventos: EventosType = () => {
   const [loadingPage, setLoadingPage] = useState(false)
   const [event, setEvent] = useState<SimpleEvent>()
 
+  const setLoadingTimeout = useCallback(() => {
+    setLoadingPage(false)
+  }, [])
+
   const fetchEvents = useCallback(async () => {
     setLoading(true)
     try {
@@ -70,20 +74,23 @@ const useEventos: EventosType = () => {
     }
   }, [])
 
-  const fetchEvent = useCallback(async (pointId: string) => {
-    setLoadingPage(true)
-    try {
-      const {
-        data: { item },
-      } = await MaricaApi.get(`/eventos/${pointId}`)
-      setEvent(item)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    } finally {
-      setLoadingPage(false)
-    }
-  }, [])
+  const fetchEvent = useCallback(
+    async (pointId: string) => {
+      setLoadingPage(true)
+      try {
+        const {
+          data: { item },
+        } = await MaricaApi.get(`/eventos/${pointId}`)
+        setEvent(item)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      } finally {
+        setTimeout(setLoadingTimeout, 1000)
+      }
+    },
+    [setLoadingTimeout],
+  )
 
   const fetchCategory = useCallback(async (id: number) => {
     setLoading(true)

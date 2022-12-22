@@ -25,6 +25,10 @@ const usePontosTuristicos: PontosTuristicosType = () => {
   const [loadingPage, setLoadingPage] = useState(false)
   const [point, setPoint] = useState<SimplePoint>()
 
+  const setLoadingTimeout = useCallback(() => {
+    setLoadingPage(false)
+  }, [])
+
   const fetchPoints = useCallback(async () => {
     setLoading(true)
     try {
@@ -61,20 +65,23 @@ const usePontosTuristicos: PontosTuristicosType = () => {
     }
   }, [])
 
-  const fetchPoint = useCallback(async (pointId: string) => {
-    setLoadingPage(true)
-    try {
-      const {
-        data: { item },
-      } = await MaricaApi.get(`/pontos/${pointId}`)
-      setPoint(item)
-    } catch (e) {
-      // eslint-disable-next-line prettier/prettier, no-console
+  const fetchPoint = useCallback(
+    async (pointId: string) => {
+      setLoadingPage(true)
+      try {
+        const {
+          data: { item },
+        } = await MaricaApi.get(`/pontos/${pointId}`)
+        setPoint(item)
+      } catch (e) {
+        // eslint-disable-next-line prettier/prettier, no-console
       console.error(e)
-    } finally {
-      setLoadingPage(false)
-    }
-  }, [])
+      } finally {
+        setTimeout(setLoadingTimeout, 1000)
+      }
+    },
+    [setLoadingTimeout],
+  )
 
   const fetchCategory = useCallback(async (id: number) => {
     setLoading(true)

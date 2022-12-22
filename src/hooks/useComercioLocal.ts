@@ -25,6 +25,10 @@ const useComercioLocal: ComercioLocalType = () => {
   const [loadingPage, setLoadingPage] = useState(false)
   const [market, setMarket] = useState<SimpleMarket>()
 
+  const setLoadingTimeout = useCallback(() => {
+    setLoadingPage(false)
+  }, [])
+
   const fetchMarkets = useCallback(async () => {
     setLoading(true)
     try {
@@ -61,20 +65,23 @@ const useComercioLocal: ComercioLocalType = () => {
     }
   }, [])
 
-  const fetchMarket = useCallback(async (pointId: string) => {
-    setLoadingPage(true)
-    try {
-      const {
-        data: { item },
-      } = await MaricaApi.get(`/comercios/${pointId}`)
-      setMarket(item)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    } finally {
-      setLoadingPage(false)
-    }
-  }, [])
+  const fetchMarket = useCallback(
+    async (pointId: string) => {
+      setLoadingPage(true)
+      try {
+        const {
+          data: { item },
+        } = await MaricaApi.get(`/comercios/${pointId}`)
+        setMarket(item)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      } finally {
+        setTimeout(setLoadingTimeout, 1000)
+      }
+    },
+    [setLoadingTimeout],
+  )
 
   const fetchCategory = useCallback(async (id: number) => {
     setLoading(true)

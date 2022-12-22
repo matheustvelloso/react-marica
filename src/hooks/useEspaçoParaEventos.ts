@@ -25,6 +25,10 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
   const [eventPlace, setEventPlace] = useState<SimpleEventPlace>()
   const [loadingPage, setLoadingPage] = useState(false)
 
+  const setLoadingTimeout = useCallback(() => {
+    setLoadingPage(false)
+  }, [])
+
   const fetchEventsPlaces = useCallback(async () => {
     setLoading(true)
     try {
@@ -61,20 +65,23 @@ const useEspaçoParaEventos: EspaçoParaEventosType = () => {
     }
   }, [])
 
-  const fetchEventPlace = useCallback(async (pointId: string) => {
-    setLoadingPage(true)
-    try {
-      const {
-        data: { item },
-      } = await MaricaApi.get(`/espacos/${pointId}`)
-      setEventPlace(item)
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e)
-    } finally {
-      setLoadingPage(false)
-    }
-  }, [])
+  const fetchEventPlace = useCallback(
+    async (pointId: string) => {
+      setLoadingPage(true)
+      try {
+        const {
+          data: { item },
+        } = await MaricaApi.get(`/espacos/${pointId}`)
+        setEventPlace(item)
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      } finally {
+        setTimeout(setLoadingTimeout, 1000)
+      }
+    },
+    [setLoadingTimeout],
+  )
 
   const fetchCategory = useCallback(async (id: number) => {
     setLoading(true)
