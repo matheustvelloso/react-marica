@@ -1,4 +1,4 @@
-import { Dispatch, memo, SetStateAction, useCallback } from 'react'
+import { Dispatch, memo, SetStateAction, useCallback, useState } from 'react'
 
 import { getDate, getMonth, format } from 'date-fns'
 
@@ -58,16 +58,20 @@ const PagesCard: React.FC<IPagesCardProps> = ({
         return 'FEV'
     }
   }
+  const [lastCategory, setLastCategory] = useState('')
 
   const formatStartDate = (): string | number =>
     startDate ? format(new Date(startDate), 'yyyy-MM-dd HH:mm:mm:mm') : ''
 
   const handleCategoryButton = useCallback(
     (categoryId: number, categoryValue: string) => {
-      if (fetchCategory) fetchCategory(categoryId)
+      if (categoryValue !== lastCategory) {
+        setLastCategory(categoryValue)
+        if (fetchCategory) fetchCategory(categoryId)
+      }
       if (setCategoryValue) setCategoryValue(categoryValue)
     },
-    [fetchCategory, setCategoryValue],
+    [fetchCategory, lastCategory, setCategoryValue],
   )
 
   return (

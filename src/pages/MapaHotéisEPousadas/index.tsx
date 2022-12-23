@@ -9,7 +9,7 @@ import Map from 'components/Map'
 import useHoteisEPousadas from 'hooks/useHoteisEPousadas'
 import useTitle from 'hooks/useTitle'
 
-import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
+import { LinkContainer, PageTitle } from './styles'
 
 const MapaPontosTurísticos: React.FC = () => {
   const { fetchCategory, motelAndInn } = useHoteisEPousadas()
@@ -25,12 +25,10 @@ const MapaPontosTurísticos: React.FC = () => {
     <>
       <Header />
       <main>
-        <ButtonContainer>
-          <LinkBackToHome to="/hoteis-e-pousadas">
-            <IoMdArrowBack className="me-2" />
-          </LinkBackToHome>
-          <PageTitle>Pontos Turísticos</PageTitle>
-        </ButtonContainer>
+        <LinkContainer to="/hoteis-e-pousadas">
+          <IoMdArrowBack className="me-2" />
+          <PageTitle>Hotéis e Pousadas</PageTitle>
+        </LinkContainer>
         <Map
           endPoint={motelAndInn}
           fetchCategory={fetchCategory}

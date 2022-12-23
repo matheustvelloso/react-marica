@@ -14,7 +14,7 @@ export const MapMarker = styled.button`
 export const Menu = styled.div`
   position: absolute;
   top: -30px;
-  left: 5px;
+  left: 0px;
   transform: translate(-50%, -100%);
   width: 300px;
   z-index: 999;

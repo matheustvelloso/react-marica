@@ -9,7 +9,7 @@ import Map from 'components/Map'
 import useComercioLocal from 'hooks/useComercioLocal'
 import useTitle from 'hooks/useTitle'
 
-import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
+import { LinkContainer, PageTitle } from './styles'
 
 const MapaComércioLocal: React.FC = () => {
   const { markets, fetchCategory } = useComercioLocal()
@@ -25,12 +25,10 @@ const MapaComércioLocal: React.FC = () => {
     <>
       <Header />
       <main>
-        <ButtonContainer>
-          <LinkBackToHome to="/comercio-local">
-            <IoMdArrowBack className="me-2" />
-          </LinkBackToHome>
+        <LinkContainer to="/comercio-local">
+          <IoMdArrowBack className="me-2" />
           <PageTitle>Comércio Local</PageTitle>
-        </ButtonContainer>
+        </LinkContainer>
         <Map
           endPoint={markets}
           title="comercio-local"

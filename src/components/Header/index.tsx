@@ -56,46 +56,59 @@ const Header: React.FC = () => {
             />
           </ButtonClose>
         </div>
-        <MenuNavigation icon={TiHome} title="Inicial" link="/" />
+        <MenuNavigation
+          icon={TiHome}
+          title="Inicial"
+          link="/"
+          setIsMenuOpened={setIsMenuOpened}
+        />
         <MenuNavigation
           icon={MdOutlineInfo}
           title="Sobre a cidade"
           link="/sobre-a-cidade"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <MenuNavigation
           icon={FaUmbrellaBeach}
           title="Pontos Turísticos"
           link="/pontos-turisticos"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <MenuNavigation
           icon={FaBed}
           title="Hotéis e Pousadas"
           link="/hoteis-e-pousadas"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <MenuNavigation
           icon={GiKnifeFork}
           title="Bares e Restaurantes"
           link="/bares-e-restaurantes"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <MenuNavigation
           icon={AiOutlineShop}
           title="Comércio Local"
           link="/comercio-local"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <MenuNavigation
           icon={GiMicrophone}
           title="Espaços para Eventos"
           link="/espacos-para-eventos"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <MenuNavigation
           icon={FaRegCalendarAlt}
           title="Eventos"
           link="/eventos"
+          setIsMenuOpened={setIsMenuOpened}
         />
         <ExternalLinkContainer
           href="https://contato.site/5d9bab8/marica-cvb3/paginaprincipal"
           target="_blank"
           rel="noreferrer"
+          onClick={() => setIsMenuOpened(false)}
         >
           <FaMapMarkedAlt />
           <span className="ms-2">Roteiros Turísticos</span>
@@ -104,6 +117,7 @@ const Header: React.FC = () => {
           href="https://www.feirartemarica.com.br/"
           target="_blank"
           rel="noreferrer"
+          onClick={() => setIsMenuOpened(false)}
         >
           <TbFlower />
           <span className="ms-2">Artesanato</span>

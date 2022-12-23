@@ -9,7 +9,7 @@ import Map from 'components/Map'
 import useEventos from 'hooks/useEventos'
 import useTitle from 'hooks/useTitle'
 
-import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
+import { LinkContainer, PageTitle } from './styles'
 
 const MapaEventos: React.FC = () => {
   const { events, fetchCategory } = useEventos()
@@ -25,12 +25,10 @@ const MapaEventos: React.FC = () => {
     <>
       <Header />
       <main>
-        <ButtonContainer>
-          <LinkBackToHome to="/eventos">
-            <IoMdArrowBack className="me-2" />
-          </LinkBackToHome>
+        <LinkContainer to="/eventos">
+          <IoMdArrowBack className="me-2" />
           <PageTitle>Eventos</PageTitle>
-        </ButtonContainer>
+        </LinkContainer>
         <Map endPoint={events} title="eventos" fetchCategory={fetchCategory} />
       </main>
     </>

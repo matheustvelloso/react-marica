@@ -9,7 +9,7 @@ import Map from 'components/Map'
 import usePontosTuristicos from 'hooks/usePontosTuristicos'
 import useTitle from 'hooks/useTitle'
 
-import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
+import { LinkContainer, PageTitle } from './styles'
 
 const MapaPontosTurísticos: React.FC = () => {
   const { points, fetchCategory } = usePontosTuristicos()
@@ -25,12 +25,10 @@ const MapaPontosTurísticos: React.FC = () => {
     <>
       <Header />
       <main>
-        <ButtonContainer>
-          <LinkBackToHome to="/pontos-turisticos">
-            <IoMdArrowBack className="me-2" />
-          </LinkBackToHome>
+        <LinkContainer to="/pontos-turisticos">
+          <IoMdArrowBack className="me-2" />
           <PageTitle>Pontos Turísticos</PageTitle>
-        </ButtonContainer>
+        </LinkContainer>
         <Map
           endPoint={points}
           fetchCategory={fetchCategory}

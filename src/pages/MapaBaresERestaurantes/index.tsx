@@ -9,7 +9,7 @@ import Map from 'components/Map'
 import useBaresERestaurantes from 'hooks/useBaresERestaurantes'
 import useTitle from 'hooks/useTitle'
 
-import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
+import { LinkContainer, PageTitle } from './styles'
 
 const MapaBaresERestaurantes: React.FC = () => {
   const { barsAndRestaurants, fetchCategory } = useBaresERestaurantes()
@@ -24,12 +24,10 @@ const MapaBaresERestaurantes: React.FC = () => {
     <>
       <Header />
       <main>
-        <ButtonContainer>
-          <LinkBackToHome to="/bares-e-restaurantes">
-            <IoMdArrowBack className="me-2" />
-          </LinkBackToHome>
+        <LinkContainer to="/bares-e-restaurantes">
+          <IoMdArrowBack className="me-2" />
           <PageTitle>Bares e Restaurantes</PageTitle>
-        </ButtonContainer>
+        </LinkContainer>
         <Map
           endPoint={barsAndRestaurants}
           title="bares-e-restaurantes"

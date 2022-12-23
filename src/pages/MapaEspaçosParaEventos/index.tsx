@@ -9,7 +9,7 @@ import Map from 'components/Map'
 import useEspaçoParaEventos from 'hooks/useEspaçoParaEventos'
 import useTitle from 'hooks/useTitle'
 
-import { ButtonContainer, LinkBackToHome, PageTitle } from './styles'
+import { LinkContainer, PageTitle } from './styles'
 
 const MapaEspaçosParaEventos: React.FC = () => {
   const { eventsPlaces, fetchCategory } = useEspaçoParaEventos()
@@ -25,12 +25,10 @@ const MapaEspaçosParaEventos: React.FC = () => {
     <>
       <Header />
       <main>
-        <ButtonContainer>
-          <LinkBackToHome to="/espacos-para-eventos">
-            <IoMdArrowBack className="me-2" />
-          </LinkBackToHome>
+        <LinkContainer to="/espacos-para-eventos">
+          <IoMdArrowBack className="me-2" />
           <PageTitle>Espaços para Eventos</PageTitle>
-        </ButtonContainer>
+        </LinkContainer>
         <Map
           endPoint={eventsPlaces}
           title="espacos-para-eventos"

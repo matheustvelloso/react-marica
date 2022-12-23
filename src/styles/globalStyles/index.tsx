@@ -113,7 +113,8 @@ export default createGlobalStyle`
     opacity: 1;
     }
     .slick-dots {
-        white-space: nowrap;
+       white-space: nowrap;
+       overflow: auto;
     }
     .slick-dots li {
         margin: 0;
