@@ -32,6 +32,8 @@ const PagesCard: React.FC<IPagesCardProps> = ({
 }) => {
   const getMonthAbbreviation = (date: string | number): string => {
     switch (getMonth(new Date(date))) {
+      case 1:
+        return 'FEV'
       case 2:
         return 'MAR'
       case 3:
@@ -52,10 +54,8 @@ const PagesCard: React.FC<IPagesCardProps> = ({
         return 'NOV'
       case 11:
         return 'DEZ'
-      case 12:
-        return 'JAN'
       default:
-        return 'FEV'
+        return 'JAN'
     }
   }
   const [lastCategory, setLastCategory] = useState('')

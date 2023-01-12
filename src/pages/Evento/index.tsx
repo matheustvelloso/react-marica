@@ -63,6 +63,8 @@ const PontoTurístico: React.FC = () => {
 
   const getMonthName = (date: string | number): string => {
     switch (getMonth(new Date(date))) {
+      case 1:
+        return 'Fevereiro'
       case 2:
         return 'Março'
       case 3:
@@ -83,15 +85,15 @@ const PontoTurístico: React.FC = () => {
         return 'Novembro'
       case 11:
         return 'Dezembro'
-      case 12:
-        return 'Janeiro'
       default:
-        return 'Fevereiro'
+        return 'Janeiro'
     }
   }
 
   const getMonthAbbreviation = (date: string | number): string => {
     switch (getMonth(new Date(date))) {
+      case 1:
+        return 'FEV'
       case 2:
         return 'MAR'
       case 3:
@@ -112,10 +114,8 @@ const PontoTurístico: React.FC = () => {
         return 'NOV'
       case 11:
         return 'DEZ'
-      case 12:
-        return 'JAN'
       default:
-        return 'FEV'
+        return 'JAN'
     }
   }
 
